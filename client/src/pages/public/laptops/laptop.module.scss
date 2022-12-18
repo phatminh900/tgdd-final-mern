@@ -1,0 +1,17 @@
+@import "../../../styles/_mixins/mixins";
+.laptop {
+  @include respond(tab-land) {
+    padding: 0 !important;
+    & > *:first-child,
+    > *:last-child {
+      padding: var(--gutter-container) 1.6rem;
+    }
+  }
+  @include respond(phone) {
+    padding: 0 !important;
+    & > *:first-child,
+    > *:last-child {
+      padding: 0;
+    }
+  }
+}

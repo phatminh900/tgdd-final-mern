@@ -1,0 +1,12 @@
+.slide-box {
+  transition: translate 1s;
+  &.smooth {
+    transition: translate 1s ease;
+  }
+}
+
+.slide {
+  img {
+    height: 20rem;
+  }
+}

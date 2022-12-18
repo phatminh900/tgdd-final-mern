@@ -1,0 +1,78 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
+    "@testing-library/react": "^13.3.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.47",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-transition-group": "^4.4.5",
+    "axios": "^0.27.2",
+    "js-cookie": "^3.0.1",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-cookie": "^4.1.1",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-lazy-load-image-component": "^1.5.5",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.4.3",
+    "react-test-renderer": "^18.2.0",
+    "react-transition-group": "^4.4.5",
+    "stripe": "^10.8.0",
+    "type": "^2.7.2",
+    "typescript": "^4.7.4",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.4",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "tsc -p tsconfig.build.json && vite build",
+    "serve": "vite preview",
+    "test": "vitest ",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/js-cookie": "^3.0.2",
+    "@types/lodash": "^4.14.184",
+    "@types/react-document-title": "^2.0.5",
+    "@types/react-lazy-load-image-component": "^1.5.2",
+    "@types/uuid": "^8.3.4",
+    "@types/whatwg-fetch": "^0.0.33",
+    "@vitejs/plugin-react": "^2.2.0",
+    "@welldone-software/why-did-you-render": "^7.0.1",
+    "jsdom": "^20.0.2",
+    "jsx-to-string": "^1.4.0",
+    "vite": "^3.2.3",
+    "vite-plugin-next-react-router": "^0.6.2",
+    "vite-plugin-svgr": "^2.2.2",
+    "vite-tsconfig-paths": "^3.5.2",
+    "vitest": "^0.25.0"
+  }
+}

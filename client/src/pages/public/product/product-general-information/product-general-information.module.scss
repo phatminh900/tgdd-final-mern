@@ -1,0 +1,27 @@
+@import "../../../../styles/_mixins/_mixins";
+.general-information {
+  position: relative;
+  @include respond(tab-land) {
+    height: auto;
+  }
+  p {
+    margin-bottom: 1.2rem;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.6),
+      white
+    );
+    @include respond(tab-land) {
+      background: none;
+    }
+  }
+}

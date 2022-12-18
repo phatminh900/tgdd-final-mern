@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig",
+  "exclude": [
+    "src/**/*.spec.ts",
+    "node_modules/",
+    "src/**/*.test.ts",
+    "src/*.mock.ts"
+  ]
+}

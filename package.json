@@ -1,0 +1,14 @@
+{
+  "name": "tgdd-mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./server/server.ts",
+  "scripts": {
+    "start": "cd server && npm  start",
+    "install-server": "npm install",
+    "install-dependencies": " npm run install-client && npm run install-server "
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
