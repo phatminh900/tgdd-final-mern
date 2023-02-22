@@ -1,4 +1,15 @@
 @import "../../../../styles/_mixins/_mixins";
+.product-general-information-box {
+  overflow: hidden;
+  height: 30rem;
+  position: relative;
+  &__btn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 .general-information {
   position: relative;
   @include respond(tab-land) {

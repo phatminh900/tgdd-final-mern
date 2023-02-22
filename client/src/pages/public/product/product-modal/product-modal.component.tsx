@@ -4,12 +4,9 @@ import { Modal } from "components";
 import { InitialStateProductModal } from "../product.hook";
 import { ProductCarousel, ProductCheckout } from "../product.import";
 import { ILinks } from "../product.container";
-import {
-  IPhoneDocument,
-  ILaptopDocument,
-} from "interfaces/allProductsType.interface";
-import { ICartProductDocument } from "store/cart/cartProductDocument";
 
+import { ICartProductDocument } from "store/cart/cartProductDocument";
+import { IProductType } from "interfaces/allProductsType.interface";
 type ProductModalProps = {
   productModalState: InitialStateProductModal;
   linksColor: {
@@ -17,52 +14,85 @@ type ProductModalProps = {
     hash: string;
     title: string;
   }[];
+  promotion: string[];
   links: ILinks[];
   isOpenModal: boolean;
   currentHighlightsImgNumber: number;
   slidesImgs: string[];
+  configuration: IProductType["currentProduct"]["configuration"];
+  imgConfiguration: string;
+  type: "laptop" | "phone";
+  title: string;
+  price: number;
+  id: string;
+  colors: string[];
+  imgColorsCover: string[];
   onToggleModal: (
     e?: React.MouseEvent<Element, MouseEvent> | undefined
   ) => void;
-  currentProduct: IPhoneDocument | ILaptopDocument;
+  imgs: IProductType["currentProduct"]["imgs"];
+  imgGeneralInformation: string;
+  generalInformation: string[];
   onSetCurrentHighlightsImgNumber: (number: number) => void;
   addToCart: (product: ICartProductDocument) => void;
-  onChangeCurrentColor: (color:string) => void;
+  onChangeCurrentColor: (color: string) => void;
   currentColor: string;
 };
 const ProductModal = ({
   productModalState,
   linksColor,
+  colors,
+  imgColorsCover,
+  id,
+  promotion,
+  price,
   links,
   slidesImgs,
+  type,
+  imgGeneralInformation,
+  generalInformation,
+  configuration,
+  imgConfiguration,
+  title,
+  imgs,
   currentHighlightsImgNumber,
   onSetCurrentHighlightsImgNumber,
   addToCart,
   currentColor,
   onChangeCurrentColor,
   onToggleModal,
-  currentProduct,
 }: ProductModalProps) => {
   return (
     <Modal isOpen={productModalState.isOpenModal} className={styles.modal}>
       {!productModalState.isOpenCheckoutModal ? (
         <ProductCarousel
+          type={type}
+          title={title}
+          imgConfiguration={imgConfiguration}
+          configuration={configuration}
           onSetCurrentHighlightsImgNumber={onSetCurrentHighlightsImgNumber}
           currentHighlightsImgNumber={currentHighlightsImgNumber}
           linksColor={linksColor}
           slidesImgs={slidesImgs}
+          imgs={imgs}
+          generalInformation={generalInformation}
+          imgGeneralInformation={imgGeneralInformation}
           links={links}
           isOpenModal={productModalState.isOpenModal}
           onToggleModal={onToggleModal}
-          currentProduct={currentProduct}
         />
       ) : (
         <>
           <ProductCheckout
             addToCart={addToCart}
+            title={title}
+            imgColorsCover={imgColorsCover}
+            colors={colors}
+            id={id}
+            promotion={promotion}
+            price={price}
             currentColor={currentColor}
             onChangeCurrentColor={onChangeCurrentColor}
-            currentProduct={currentProduct}
             onToggleModal={onToggleModal}
           />
         </>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonStorage } from "components";
+import { Button } from "components";
 import styles from "../product.module.scss";
 import {
   ILaptopDocument,
@@ -7,25 +7,30 @@ import {
 } from "interfaces/allProductsType.interface";
 
 type ProductStorageProps = {
-  currentProduct: ILaptopDocument | IPhoneDocument;
-  changeCurrentStorage: (e: React.MouseEvent<Element, MouseEvent>) => void;
+  storage:number[];
+  internalMemory:number;
+  otherVersions:string[]
+  changeCurrentStorage: (url: string) => void;
 };
 const ProductStorage = ({
-  currentProduct,
+  storage,
+  internalMemory,
+  otherVersions,
   changeCurrentStorage,
 }: ProductStorageProps) => {
-
   return (
     <div className={`${styles.storage} flex`}>
-      {currentProduct.storage.map((st: number, i: number) => (
-        <ButtonStorage
-          key={st}
-          className={styles["btn-storage"]}
-          configuration={currentProduct.configuration}
-          changeCurrentStorage={changeCurrentStorage}
-          value={st}
-          url={currentProduct.otherVersions[i]}
-        />
+      {storage.map((st: number, i: number) => (
+        <Button
+        key={st}
+          btnType="storage"
+          onClick={() => changeCurrentStorage(otherVersions[i])}
+          className={`${styles["btn-storage"]}  `}
+          active={  internalMemory === +st }
+          
+        >
+          {st}GB
+        </Button>
       ))}
     </div>
   );

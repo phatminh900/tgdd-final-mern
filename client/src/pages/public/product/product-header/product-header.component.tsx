@@ -6,27 +6,36 @@ import useWindowDimensions from "hooks/useWindowDimensions";
 import { ICurrentProduct } from "../product.interface";
 import { ReviewOverall } from "components";
 
-interface ProductHeaderProps extends ICurrentProduct {}
-const ProductHeader = ({ currentProduct }: ProductHeaderProps) => {
+interface ProductHeaderProps {
+  firm: string;
+  category: string;
+  ratingQuantity: number;
+  ratingAverage: number;
+  title: string;
+}
+const ProductHeader = ({
+  firm,
+  category,
+  ratingAverage,
+  ratingQuantity,
+  title,
+}: ProductHeaderProps) => {
   const { width } = useWindowDimensions();
 
   return (
     <div className={styles.header}>
-      <ProductLinks
-        firm={currentProduct.firm}
-        category={currentProduct.category}
-      />
+      <ProductLinks firm={firm} category={category} />
       {width >= 1200 && (
         <div className={`${styles.info}  flex-vt-ct`}>
-          <h3 className={styles.title}>Điện thoại {currentProduct.title} </h3>
+          <h3 className={styles.title}>Điện thoại {title} </h3>
           <a href="#reviews" className="flex-vt-ct">
             <ReviewOverall
-              ratingAverage={currentProduct.ratingAverage}
-              ratingQuantity={currentProduct.ratingQuantity}
+              ratingAverage={ratingAverage}
+              ratingQuantity={ratingQuantity}
               className={styles.reviews}
             />
             <span className={styles["reviews__text"]}>
-              {currentProduct.ratingQuantity} Đánh giá
+              {ratingQuantity} Đánh giá
             </span>
           </a>
         </div>

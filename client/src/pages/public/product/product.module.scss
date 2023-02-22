@@ -55,17 +55,7 @@ $gutter-line: 1.4rem;
     margin: 2.4rem 0;
   }
 }
-.product-general-information-box {
-  overflow: hidden;
-  height: 30rem;
-  position: relative;
-  &__btn {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
+
 
 .right {
   display: flex;
@@ -83,17 +73,10 @@ $gutter-line: 1.4rem;
   padding: 1rem 2.4rem;
   border: 1px solid var(--color-border);
 }
-.price {
-  color: var(--color-red);
-  font-weight: 700;
-  font-size: 1.8rem;
-}
+
 
 .btn-buy {
   width: 100%;
-  background-color: var(--color-secondary);
-  border-radius: var(--border-radius-5px);
-  color: var(--color-white);
   text-transform: uppercase;
   padding: 1.6rem;
   font-weight: 600;

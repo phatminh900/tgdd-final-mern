@@ -12,7 +12,7 @@
   right: 25%;
   max-width: 25rem;
   padding: 1.6rem 1.2rem;
-  border-radius: var(--border-radius-5px);
+  border-radius: var(--round-border-sm);
   border: 1px solid var(--color-secondary);
   &.active {
     opacity: 1;
@@ -35,7 +35,7 @@
   }
 
   img {
-    width: 15%;
+    width: 30%;
   }
 
   @include respond(tab-land) {
@@ -52,7 +52,7 @@
 }
 .btn-cart {
   margin-top: 1rem;
-  border-radius: var(--border-radius-5px);
+  border-radius: var(--round-border-sm);
   background-color: var(--color-secondary);
   color: var(--color-white) !important;
   padding: 0.4rem;

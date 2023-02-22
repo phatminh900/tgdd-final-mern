@@ -1,23 +1,29 @@
-import { ROUTES } from "app-constants/navigation.constant";
-import { AuthComponent, Input } from "components";
-import BtnSubmit from "components/btn/btn-submit/btn-submit.component";
+import { AuthComponent, Button, Input } from "components";
 import { ResponseStatusMessage } from "interfaces/response.interface";
 
 import {
-  Form,
   LoaderFunctionArgs,
   useActionData,
-  useLocation,
   useNavigation,
 } from "react-router-dom";
 import { forgotPasswordReactRouter } from "service/user.service";
 import useForgotPasswordHook from "./forgot-password.hook";
+import useChangeTextSubmit from "hooks/useChangeTextSubmit.hook";
+import { BsCheckCircle } from "react-icons/bs";
 
 const ForgotPassword = () => {
   const forgotPasswordValue = useActionData() as ResponseStatusMessage;
   const { userEmail, changeUserValue, error, success } =
     useForgotPasswordHook(forgotPasswordValue);
   const navigation = useNavigation();
+  const text =
+    navigation.state === "submitting"
+      ? "Submitting..."
+      : "Send email to reset password";
+  const { isLoading, isSuccess } = useChangeTextSubmit(
+    navigation,
+     forgotPasswordValue.status
+  );
   // TODO: CHANGE LINK RESET PASSWORD
   return (
     <>
@@ -29,19 +35,11 @@ const ForgotPassword = () => {
           id="email"
           type="email"
         />
-        <BtnSubmit
-          isLoading={navigation.state === "submitting"}
-          isSuccess={
-            forgotPasswordValue
-              ? forgotPasswordValue.status === "success"
-              : false
-          }
-          text={
-            navigation.state === "submitting"
-              ? "Submitting..."
-              : "Send email to reset password"
-          }
-        />
+        <Button btnType="secondary">
+          {!isSuccess && !isLoading && text}
+          {isLoading && text}
+          {isSuccess && <BsCheckCircle />}
+        </Button>
       </AuthComponent>
     </>
   );

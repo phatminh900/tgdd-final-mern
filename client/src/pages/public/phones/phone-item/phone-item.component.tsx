@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./phone-item.module.scss";
 
-import { ButtonStorage, ProductItem, ReviewOverall } from "components";
+import { Button, ProductItem, ReviewOverall } from "components";
 import Price from "components/price/price.component";
 import useProductItemHook from "hooks/useProductItem.hook";
 import { IPhoneDocument } from "interfaces/allProductsType.interface";
@@ -35,18 +35,16 @@ const PhoneItem = ({ phone }: PhoneItemProps) => {
 
         <div className={`${styles.storage} flex`}>
           {currentPhone.storage.map((st, i) => (
-            <ButtonStorage
+            <Button
               key={st}
-              configuration={currentProduct.configuration}
-              changeCurrentStorage={changeCurrentStorage}
-              url={currentProduct.otherVersions[i]}
-              value={st}
-              className={`${
-                currentProduct.configuration.internalMemory === +st
-                  ? styles.active
-                  : ""
-              }`}
-            />
+              btnType="storage"
+              onClick={() =>
+                changeCurrentStorage(currentProduct.otherVersions[i])
+              }
+              active={currentProduct.configuration.internalMemory === +st}
+            >
+              {st}GB
+            </Button>
           ))}
         </div>
         <Price price={currentPhone.price} />

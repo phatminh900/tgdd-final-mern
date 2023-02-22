@@ -3,9 +3,9 @@ import React from "react";
 import { ImStarFull } from "react-icons/im";
 
 import styles from "./reviewOverall.module.scss";
-interface ReviewProps {
-  ratingAverage: number;
-  ratingQuantity: number;
+import { IProductRating } from "pages/public/product/product.interface";
+interface ReviewProps extends IProductRating{
+
   className?: string;
 }
 const ReviewsOverall = ({ ratingAverage, className }: ReviewProps) => {

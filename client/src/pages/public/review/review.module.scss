@@ -36,7 +36,7 @@
     display: grid;
     grid-template-columns: 3fr 3fr 4fr;
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-5px);
+    border-radius: var(--round-border-sm);
     padding: 2.4rem;
     @include respond(tab-port) {
       grid-template-columns: 1fr;
@@ -48,19 +48,21 @@
     & > *:not(:last-child) {
       border-right: 1px solid var(--color-border);
     }
-    figure {
-      flex-direction: column;
-
-      img {
-        width: 45%;
-        justify-self: center;
-        @include respond(tab-port) {
-          width: 25%;
-        }
+  }
+  &__product {
+    flex-direction: column;
+    height: 20rem;
+    img {
+      width: 45%;
+      justify-self: center;
+      @include respond(tab-port) {
+        width: 25%;
       }
     }
   }
   &__product-details-box {
+    height: 100%;
+
     flex-direction: column;
     @include respond(tab-port) {
       flex-direction: row;
@@ -132,7 +134,7 @@
     width: 25px;
     height: 25px;
     background-color: #ddd;
-    border-radius: var(--border-radius-5px);
+    border-radius: var(--round-border-sm);
     &:hover {
       background-color: #ccc;
     }

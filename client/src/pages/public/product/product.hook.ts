@@ -86,11 +86,7 @@ const useProductHook = (currentProduct: IPhoneDocument | ILaptopDocument) => {
       title: "Thông số kĩ thuật",
       hash: "configurations",
     },
-    {
-      id: uuidv4(),
-      title: "Thông tin sản phẩm",
-      hash: "general-information",
-    },
+    
   ];
 
   const onSetCurrentHighlightsImgNumber = (number: number) => {
@@ -114,9 +110,8 @@ const useProductHook = (currentProduct: IPhoneDocument | ILaptopDocument) => {
     // dispatch(cartSliceAction.addToCart(product));
   };
 
-  const changeCurrentStorage = (e: React.MouseEvent) => {
-    const currentProductUrl = (e.target as HTMLDivElement).dataset.url!;
-    navigate(location.pathname.replace(slug!, currentProductUrl));
+  const changeCurrentStorage = (url:string) => {
+    navigate(location.pathname.replace(slug!, url));
   };
   const changeCurrentColor = (color: string) => {
     setCurrentColor(color);

@@ -15,6 +15,7 @@ import {
   ResponseStatusMessage,
 } from "interfaces/response.interface";
 import { ROUTES } from "app-constants/navigation.constant";
+import useChangeTextSubmit from "hooks/useChangeTextSubmit.hook";
 const SignUp = () => {
   const signupData = useActionData() as
     | ResponseStatusData<IUser>
@@ -24,7 +25,11 @@ const SignUp = () => {
   const { userValue, changeUserValue, error, successMsg } =
     useSignupHook(signupData);
   const navigation = useNavigation();
-
+  const { isLoading, isSuccess } = useChangeTextSubmit(
+    navigation,
+    signupData?.status
+  );
+  const text = navigation.state === "submitting" ? "Submitting..." : "Signup";
   return (
     <AuthComponent successMessage={successMsg} error={error}>
       <Input
@@ -57,11 +62,7 @@ const SignUp = () => {
       />
       {/* <Link  */}
 
-      <BtnSubmit
-        isLoading={navigation.state === "submitting"}
-        isSuccess={signupData ? signupData.status === "success" : false}
-        text={navigation.state === "submitting" ? "Submitting..." : "Signup"}
-      />
+      <BtnSubmit isLoading={isLoading} isSuccess={isSuccess} text={text} />
       <Link
         state={{ prevPath: ROUTES.SIGNUP }}
         className="navigate-auth-link"

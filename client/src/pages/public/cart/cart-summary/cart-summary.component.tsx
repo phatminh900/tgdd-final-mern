@@ -1,9 +1,9 @@
-import BtnBuy from "components/btn/btn-buy/btn-buy.component";
-import Price from "components/price/price.component";
 import React from "react";
+import Price from "components/price/price.component";
 import useCartState from "store/cart/cart-slice.hook";
 import useCartSummaryHook from "./cart-summary.hook";
 import styles from "./cart-summary.module.scss";
+import { Button } from "components";
 
 interface CartSummaryProps {
   checkout: () => Promise<
@@ -24,7 +24,7 @@ const CartSummary = ({ checkout }: CartSummaryProps) => {
         <p className="text-bold">Tổng tiền </p>
         <Price price={cartState.priceAfterApplyingDiscount || totalPrice} />
       </div>
-      <BtnBuy text="Mua ngay" onClick={checkout} />
+      <Button btnType="primary" onClick={checkout}> Mua ngay</Button>
     </div>
   );
 };

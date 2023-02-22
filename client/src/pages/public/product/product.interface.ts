@@ -17,7 +17,10 @@ export interface IProductHighlightsImgState {
   currentHighlightsImgNumber?: number;
   onSetCurrentHighlightsImgNumber?: (number: number) => void;
 }
-export interface IProductTab  {
- tab:string
+export interface IProductTab {
+  tab: string;
 }
-export interface IProductCarousel {}
+export interface IProductRating {
+  ratingQuantity: number;
+  ratingAverage: number;
+}

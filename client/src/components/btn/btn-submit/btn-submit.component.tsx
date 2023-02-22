@@ -1,6 +1,7 @@
 import React from "react";
 import { BsCheckCircle } from "react-icons/bs";
 import styles from "./btn-submit.module.scss";
+import Button from "../button.component";
 const BtnSubmit = ({
   text,
   isLoading,
@@ -13,11 +14,11 @@ const BtnSubmit = ({
   className?: string;
 }) => {
   return (
-    <button className={`${styles.btn} ${className}`} disabled={isSuccess}>
+    <Button btnType="secondary" className={`${styles.btn} ${className}`} disabled={isSuccess}>
       {!isSuccess && !isLoading && text}
       {isLoading && text}
       {isSuccess && <BsCheckCircle />}
-    </button>
+    </Button>
   );
 };
 

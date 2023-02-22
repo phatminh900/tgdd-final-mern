@@ -1,23 +1,22 @@
 import React from "react";
-import Slider from "components/slider/slider.component";
-import { GiAlliedStar, GiNotebook } from "react-icons/gi";
-import { FiBox } from "react-icons/fi";
-import { v4 as uuidv4 } from "uuid";
-import styles from "./product-overview.module.scss";
 import { useLocation } from "react-router-dom";
+
+import Slider from "components/slider/slider.component";
+
+import styles from "./product-overview.module.scss";
 import { type ILinks } from "../product.container";
 import {
   IProductHighlightsImgState,
   IProductModalState,
-  ICurrentProduct,
 } from "../product.interface";
+import useProductOverview from "./useProductOverview.hook";
 
 interface ProductOverviewProps
   extends Omit<IProductModalState, "onToggleModal">,
-    ICurrentProduct,
     IProductHighlightsImgState {
   slideImgs: string[];
   isOpenModal: boolean;
+  imgColorsCover: string[];
   linksColor: { id: string; hash: string; title: string }[];
   links: ILinks[];
   onOpenProductCarousel: (e: React.MouseEvent) => void;
@@ -25,8 +24,8 @@ interface ProductOverviewProps
 }
 const ProductOverview = ({
   isOpenModal,
-  currentProduct,
   tab,
+  imgColorsCover,
   linksColor,
   links,
   onOpenProductCarousel,
@@ -34,36 +33,7 @@ const ProductOverview = ({
   slideImgs,
   currentHighlightsImgNumber,
 }: ProductOverviewProps) => {
-  const productCarouselListTab = [
-    {
-      id: uuidv4(),
-      icon: <GiAlliedStar />,
-      title: "Điểm nổi bật",
-    },
-    // colors
-    ...linksColor.map((linkColor, i) => ({
-      id: uuidv4(),
-      icon: (
-        <img
-          width={40}
-          height={40}
-          src={currentProduct?.imgColorsCover[i]}
-          alt="Product color "
-        />
-      ),
-      title: linkColor.title,
-    })),
-    {
-      id: uuidv4(),
-      icon: <FiBox />,
-      title: "Thông số kĩ thuật",
-    },
-    {
-      id: uuidv4(),
-      icon: <GiNotebook />,
-      title: "Thông tin sản phẩm",
-    },
-  ];
+  const productCarouselListTab = useProductOverview(linksColor, imgColorsCover);
   const { hash } = useLocation();
   return (
     <div className={styles["product-overview"]}>

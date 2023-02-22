@@ -111,9 +111,12 @@ const DynamicProductColorComponent = React.lazy(() => import('./pages\public\pro
 const DynamicProductConfigurationComponent = React.lazy(() => import('./pages\public\product\product-configuration\product-configuration.component'));
 const DynamicProductGeneralInformation = React.lazy(() => import('./pages\public\product\product-general-information\product-general-information'));
 const DynamicProductHeaderComponent = React.lazy(() => import('./pages\public\product\product-header\product-header.component'));
+const DynamicProductInfoComponent = React.lazy(() => import('./pages\public\product\product-info\product-info.component'));
 const DynamicProductLinksComponent = React.lazy(() => import('./pages\public\product\product-links\product-links.component'));
 const DynamicProductModalComponent = React.lazy(() => import('./pages\public\product\product-modal\product-modal.component'));
 const DynamicProductOverviewComponent = React.lazy(() => import('./pages\public\product\product-overview\product-overview.component'));
+const DynamicUseProductOverviewHook = React.lazy(() => import('./pages\public\product\product-overview\useProductOverview.hook'));
+const DynamicProductPriceComponent = React.lazy(() => import('./pages\public\product\product-price\product-price.component'));
 const DynamicProductPromotionsComponent = React.lazy(() => import('./pages\public\product\product-promotion\product-promotions.component'));
 const DynamicProductNoReviewComponent = React.lazy(() => import('./pages\public\product\product-review\product-no-review.component'));
 const DynamicProductReviewRatingComponents = React.lazy(() => import('./pages\public\product\product-review\product-review-rating.components'));
@@ -260,9 +263,12 @@ export const routes = [
       { path: 'D:\public\product\product-configuration\product-configuration.component', element: <DynamicProductConfigurationComponent />, },
       { path: 'D:\public\product\product-general-information\product-general-information', element: <DynamicProductGeneralInformation />, },
       { path: 'D:\public\product\product-header\product-header.component', element: <DynamicProductHeaderComponent />, },
+      { path: 'D:\public\product\product-info\product-info.component', element: <DynamicProductInfoComponent />, },
       { path: 'D:\public\product\product-links\product-links.component', element: <DynamicProductLinksComponent />, },
       { path: 'D:\public\product\product-modal\product-modal.component', element: <DynamicProductModalComponent />, },
       { path: 'D:\public\product\product-overview\product-overview.component', element: <DynamicProductOverviewComponent />, },
+      { path: 'D:\public\product\product-overview\useProductOverview.hook', element: <DynamicUseProductOverviewHook />, },
+      { path: 'D:\public\product\product-price\product-price.component', element: <DynamicProductPriceComponent />, },
       { path: 'D:\public\product\product-promotion\product-promotions.component', element: <DynamicProductPromotionsComponent />, },
       { path: 'D:\public\product\product-review\product-no-review.component', element: <DynamicProductNoReviewComponent />, },
       { path: 'D:\public\product\product-review\product-review-rating.components', element: <DynamicProductReviewRatingComponents />, },
@@ -407,9 +413,12 @@ export const pages = [
   { route: 'D:\public\product\product-configuration\product-configuration.component' },
   { route: 'D:\public\product\product-general-information\product-general-information' },
   { route: 'D:\public\product\product-header\product-header.component' },
+  { route: 'D:\public\product\product-info\product-info.component' },
   { route: 'D:\public\product\product-links\product-links.component' },
   { route: 'D:\public\product\product-modal\product-modal.component' },
   { route: 'D:\public\product\product-overview\product-overview.component' },
+  { route: 'D:\public\product\product-overview\useProductOverview.hook' },
+  { route: 'D:\public\product\product-price\product-price.component' },
   { route: 'D:\public\product\product-promotion\product-promotions.component' },
   { route: 'D:\public\product\product-review\product-no-review.component' },
   { route: 'D:\public\product\product-review\product-review-rating.components' },

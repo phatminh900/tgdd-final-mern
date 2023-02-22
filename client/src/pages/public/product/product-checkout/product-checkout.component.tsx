@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { AiFillCaretDown } from "react-icons/ai";
 import styles from "./product-checkout.module.scss";
 import formatCurrency from "utils/formatCurrency";
-import BtnBuy from "components/btn/btn-buy/btn-buy.component";
 import { Link, useLocation } from "react-router-dom";
 import { ICartProductDocument } from "store/cart/cartProductDocument";
 import QuantityBox from "components/quantity-box/quantity-box.component";
 import ProductCheckoutListColor from "./product-checkout-list-color/product-checkout-list-color.component";
 import { IProductType } from "interfaces/allProductsType.interface";
-interface ProductCheckoutProps extends IProductType {
+import { Button } from "components";
+interface ProductCheckoutProps  {
   currentColor: string;
   onToggleModal: () => void;
   onChangeCurrentColor: (color: string) => void;
+  id: string;
+  title: string;
+  promotion: string[];
+  colors: string[];
+  imgColorsCover: string[];
+  price: number;
   addToCart: (product: ICartProductDocument) => void;
 }
 const ProductCheckout = ({
   onToggleModal,
-  currentProduct,
+  title,
+  id,
+  promotion,
+  imgColorsCover,
+  colors,
+  price,
   addToCart,
   onChangeCurrentColor,
   currentColor,
@@ -29,11 +40,10 @@ const ProductCheckout = ({
   };
   const [isOpenPromotionBox, setIsOpenPromotionBox] = useState(false);
   const addProductToCartHandler = () => {
-    const { _id, title, price, promotion, colors, imgColorsCover, discount } =
-      currentProduct;
+    const discount = [{ code: "NEW_JOB", discount: 10 }];
     const product = {
       title,
-      id: _id,
+      id,
       price,
       currentColor,
       discount,
@@ -50,9 +60,9 @@ const ProductCheckout = ({
     <>
       <div className={`${styles["product-checkout"]} center-both-absolute`}>
         <div className={styles["product-checkout__header"]}>
-          <p>{currentProduct.title}</p>
+          <p>{title}</p>
           <p className={styles["product-checkout__price"]}>
-            {formatCurrency(currentProduct.price)}₫
+            {formatCurrency(price)}₫
           </p>
           <button
             onClick={() => onToggleModal()}
@@ -70,8 +80,8 @@ const ProductCheckout = ({
           <ProductCheckoutListColor
             onChangeCurrentColor={onChangeCurrentColor}
             currentColor={currentColor}
-            colors={currentProduct.colors}
-            imgColorsCover={currentProduct.imgColorsCover}
+            colors={colors}
+            imgColorsCover={imgColorsCover}
           />
           <div
             className={`${styles["product-checkout__quantity-box"]} flex-vt-ct`}
@@ -88,7 +98,7 @@ const ProductCheckout = ({
             }`}
           >
             <ul className={styles["product-checkout__promotion-list"]}>
-              {currentProduct.promotion.map((promo) => (
+              {promotion.map((promo) => (
                 <li key={uuidv4()}>{promo}</li>
               ))}
             </ul>
@@ -99,11 +109,14 @@ const ProductCheckout = ({
               {!isOpenPromotionBox ? "Xem tất cả khuyến mãi" : "Thu gọn"}{" "}
               <AiFillCaretDown />
             </button>
-            {/*  */}
-            <BtnBuy
+            <Button
               onClick={addProductToCartHandler}
-              text="Thêm vào giỏ hàng"
-            />
+              className="w-100"
+              btnType="primary"
+            >
+              Thêm vào giỏ hàng
+            </Button>
+
             <Link
               target="_blank"
               to="/cart"

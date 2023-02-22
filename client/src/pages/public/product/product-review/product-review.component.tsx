@@ -3,14 +3,33 @@ import { GiAlliedStar } from "react-icons/gi";
 import { v4 as uuidv4 } from "uuid";
 
 import styles from "./product-review.module.scss";
-import { Modal, Ratings, ReviewOverall, UserReview } from "components";
+import { Button, Modal, Ratings, ReviewOverall, UserReview } from "components";
 import PhoneNoReview from "./product-no-review.component";
 // img
 import ProductReviewRating from "./product-review-rating.components";
 
 import { IProductType } from "interfaces/allProductsType.interface";
 import useProductReview from "./product-review.hook";
-const ProductReview = ({ currentProduct }: IProductType) => {
+import { IProductRating } from "../product.interface";
+
+interface IProductReviewProps extends IProductRating {
+  title: string;
+  category: string;
+  id: string;
+  imgCover: string;
+  type: string;
+  reviews: IProductType["currentProduct"]["reviews"];
+}
+const ProductReview = ({
+  category,
+  type,
+  id,
+  imgCover,
+  title,
+  ratingAverage,
+  ratingQuantity,
+  reviews,
+}: IProductReviewProps) => {
   const {
     isOpenModal,
     onToggleModal,
@@ -20,23 +39,22 @@ const ProductReview = ({ currentProduct }: IProductType) => {
     location,
     onPreChooseRating,
     currentRating,
-  } = useProductReview(currentProduct);
-  if (!currentProduct) return null;
+  } = useProductReview(category);
   return (
     <div id="reviews" className={styles["product-reviews"]}>
-      <h3 className={styles.title}>Đánh giá {currentProduct?.title}</h3>
-      {currentProduct.ratingQuantity > 0 && (
+      <h3 className={styles.title}>Đánh giá {title}</h3>
+      {ratingQuantity > 0 && (
         <div className=" gap-8px flex-vt-ct">
           <p className={styles["product-reviews__ratingAvg"]}>
-            {currentProduct.ratingAverage}
+            {ratingAverage}
           </p>
 
           <ReviewOverall
-            ratingQuantity={currentProduct.ratingQuantity}
-            ratingAverage={currentProduct.ratingAverage}
+            ratingQuantity={ratingQuantity}
+            ratingAverage={ratingAverage}
           />
           <p className={styles["product-reviews__rating-text"]}>
-            {currentProduct.ratingQuantity} Đánh giá
+            {ratingQuantity} Đánh giá
           </p>
         </div>
       )}
@@ -46,15 +64,22 @@ const ProductReview = ({ currentProduct }: IProductType) => {
             onSubmitReview={onSubmitReview}
             isOpenModal={isOpenModal}
             userPreChooseRating={currentRating}
-            currentProduct={currentProduct}
+            title={title}
+            imgCover={imgCover}
+            id={id}
+            type={type}
             onToggleModal={onToggleModal}
             onPreChooseRating={onPreChooseRating}
             setIsOpenModal={setIsOpenModal}
           />
         </Modal>
       </div>
-      {!(currentProduct.ratingQuantity > 0) && (
+      {!(ratingQuantity > 0) && (
         <PhoneNoReview
+        title={title}
+        id={id}
+        imgCover={imgCover}
+        type={type as 'laptop'|'phone'}
           onSubmitReview={onSubmitReview}
           isOpenModal={isOpenModal}
           onPreChooseRating={onPreChooseRating}
@@ -62,34 +87,28 @@ const ProductReview = ({ currentProduct }: IProductType) => {
           onToggleModal={onToggleModal}
         />
       )}
-      {currentProduct.ratingQuantity > 0 && (
+      {ratingQuantity > 0 && (
         <>
-          <Ratings
-            reviews={currentProduct.reviews}
-            ratingQuantity={currentProduct.ratingQuantity}
-          />
+          <Ratings reviews={reviews} ratingQuantity={ratingQuantity} />
 
-          {currentProduct.reviews.slice(0, 2).map((review) => (
+          {reviews.slice(0, 2).map((review) => (
             <UserReview key={uuidv4()} review={review} />
           ))}
           <div
             className={`${styles["product-reviews__actions"]} flex gap-12px`}
           >
-            <button
-              onClick={() => onToggleModal()}
-              className={`flex-both-ct btn--blue`}
-            >
+            <Button btnType="secondary" onClick={() => onToggleModal()}>
               <GiAlliedStar />
               Viết đánh giá
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => {
                 navigate(location.pathname + "/reviews");
               }}
-              className="btn--border-blue"
+              btnType="neutral"
             >
-              Xem {currentProduct.ratingQuantity} đánh giá
-            </button>
+              Xem {ratingQuantity} đánh giá
+            </Button>
           </div>
         </>
       )}
@@ -97,4 +116,4 @@ const ProductReview = ({ currentProduct }: IProductType) => {
   );
 };
 
-export default React.memo(ProductReview);
+export default ProductReview;

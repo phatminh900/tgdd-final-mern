@@ -8,7 +8,7 @@
     margin: 1.6rem 0;
     padding: 1.2rem 2.4rem;
     border: 1px solid var(--border-color);
-    border-radius: var(----border-radius-5px);
+    border-radius: var(----round-border-sm);
   }
   &__discount-box {
     background-color: var(--color-light-white);
@@ -34,6 +34,6 @@
     background-color: var(--color-tertiary);
     color: var(--color-white);
     padding: 1.2rem;
-    border-radius: var(--border-radius-5px);
+    border-radius: var(--round-border-sm);
   }
 }

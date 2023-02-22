@@ -1,10 +1,8 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
-import { AiOutlineCaretRight } from "react-icons/ai";
-import DocumentTitle from "react-document-title";
 import styles from "./product.module.scss";
 import { NotFound } from "../NotFound";
-import { ReviewOverall } from "components";
+import { Button } from "components";
 import {
   ProductAddedToCart,
   ProductReview,
@@ -14,8 +12,6 @@ import {
   ProductGeneralInformation,
 } from "./product.import";
 import useProductHook from "./product.hook";
-import BtnBuy from "components/btn/btn-buy/btn-buy.component";
-import Price from "components/price/price.component";
 
 import {
   ILaptopDocument,
@@ -28,6 +24,8 @@ import ProductColor from "./product-color/product-color.component";
 import ProductModal from "./product-modal/product-modal.component";
 import ProductHeader from "./product-header/product-header.component";
 import { useEffect } from "react";
+import ProductInfo from "./product-info/product-info.component";
+import ProductPrice from "./product-price/product-price.component";
 
 export interface ILinks {
   id: string;
@@ -64,6 +62,17 @@ const Product = () => {
   return (
     <section className={styles.product}>
       <ProductModal
+        promotion={currentProduct.promotion}
+        price={currentProduct.price}
+        id={currentProduct._id}
+        colors={currentProduct.colors}
+        imgColorsCover={currentProduct.imgColorsCover}
+        type={currentProduct.type as "phone" | "laptop"}
+        title={currentProduct.title}
+        imgConfiguration={currentProduct.imgs.imgConfiguration[0]}
+        imgGeneralInformation={currentProduct.imgs.imgGeneralInformation[0]}
+        generalInformation={currentProduct.generalInformation}
+        imgs={currentProduct.imgs}
         productModalState={productModalState}
         onSetCurrentHighlightsImgNumber={onSetCurrentHighlightsImgNumber}
         currentHighlightsImgNumber={currentHighlightsImgNumber}
@@ -72,12 +81,18 @@ const Product = () => {
         links={links}
         isOpenModal={productModalState.isOpenModal}
         onToggleModal={onToggleModal}
-        currentProduct={currentProduct}
+        configuration={currentProduct.configuration}
         addToCart={addToCart}
         currentColor={currentColor}
         onChangeCurrentColor={changeCurrentColor}
       />
-      <ProductHeader currentProduct={currentProduct} />
+      <ProductHeader
+        title={currentProduct.title}
+        firm={currentProduct.firm}
+        category={currentProduct.category}
+        ratingAverage={currentProduct.ratingAverage}
+        ratingQuantity={currentProduct.ratingQuantity}
+      />
       <div className={`${styles.main} flex`}>
         {width <= 1200 ? (
           <>
@@ -87,61 +102,54 @@ const Product = () => {
               linksColor={linksColor}
               links={links}
               slideImgs={slidesImgs}
-              currentProduct={currentProduct}
+              imgColorsCover={currentProduct.imgColorsCover}
               onOpenProductCarousel={onOpenProductCarousel}
               tab={links[0].hash}
               isOpenModal={productModalState.isOpenModal}
             />
-
-            <div className={`${styles.info}  flex-vt-ct`}>
-              <h3 className={styles.title}>
-                Điện thoại {currentProduct.title}{" "}
-              </h3>
-              <a href="#reviews" className="flex-vt-ct">
-                <ReviewOverall
-                  ratingAverage={currentProduct.ratingAverage}
-                  ratingQuantity={currentProduct.ratingQuantity}
-                  className={styles.reviews}
-                />
-                <span className={styles["reviews__text"]}>
-                  {currentProduct.ratingQuantity} Đánh giá
-                </span>
-              </a>
-            </div>
+            <ProductInfo
+              ratingAverage={currentProduct.ratingAverage}
+              ratingQuantity={currentProduct.ratingQuantity}
+              title={currentProduct.title}
+            />
             <ProductStorage
               changeCurrentStorage={changeCurrentStorage}
-              currentProduct={currentProduct}
+              otherVersions={currentProduct.otherVersions}
+              storage={currentProduct.storage}
+              internalMemory={currentProduct.configuration.internalMemory}
             />
             <ProductColor
               onChangeCurrentColor={changeCurrentColor}
               currentColor={currentColor}
               colors={currentProduct.colors}
             />
-            <div>
-              <div className={`${styles.price} flex-vt-ct`}>
-                Giá: <Price price={currentProduct.price} />
-              </div>
-            </div>
-            <BtnBuy
+            <ProductPrice price={currentProduct.price} />
+            <Button
+              className={styles["btn-buy"]}
+              btnType="primary"
               onClick={() => {
                 onOpenCheckoutModal();
                 setIsProductAdded(false);
                 onToggleModal();
               }}
-              text="Mua ngay"
-            />
+            >
+              Mua ngay
+            </Button>
+
             <ProductAddedToCart
               setIsProductAdded={setIsProductAdded}
               imgCover={currentProduct.imgCover}
               isProductAdded={isProductAdded}
               title={currentProduct.title}
             />
-            <ProductPromotions currentProduct={currentProduct} />
+            <ProductPromotions promotion={currentProduct.promotion} />
             <ProductConfiguration
               // the second last
               tab={links[links.length - 2].hash}
               onToggleModal={onToggleModal}
-              currentProduct={currentProduct}
+              configuration={currentProduct.configuration}
+              title={currentProduct.title}
+              type={currentProduct.type as "laptop" | "phone"}
               onOpenProductCarousel={onOpenProductCarousel}
             />
             <div className={styles["Product-configuration-img-box"]}>
@@ -155,16 +163,28 @@ const Product = () => {
               ) : null}
             </div>
             <ProductGeneralInformation
+              onClick={onOpenProductCarousel.bind(links[links.length - 1].hash)}
               className={styles["product-general-information-box"]}
-              currentProduct={currentProduct}
+              generalInformation={currentProduct.generalInformation}
+              imgGeneralInformation={
+                currentProduct.imgs.imgGeneralInformation[0]
+              }
               imgSrc={currentProduct.imgs.imgGeneralInformation[0]}
             />
-            <ProductReview currentProduct={currentProduct} />
+            <ProductReview
+              type={currentProduct.type}
+              id={currentProduct._id}
+              imgCover={currentProduct.imgCover}
+              category={currentProduct.category}
+              title={currentProduct.title}
+              ratingAverage={currentProduct.ratingAverage}
+              ratingQuantity={currentProduct.ratingQuantity}
+              reviews={currentProduct.reviews}
+            />
           </>
         ) : (
           <>
             <div className={styles.left}>
-              {/* <div onClick={onOpenProductCarousel.bind(listHash[0])}> */}
               <ProductOverview
                 onSetCurrentHighlightsImgNumber={
                   onSetCurrentHighlightsImgNumber
@@ -173,7 +193,7 @@ const Product = () => {
                 linksColor={linksColor}
                 links={links}
                 slideImgs={slidesImgs}
-                currentProduct={currentProduct}
+                imgColorsCover={currentProduct.imgColorsCover}
                 onOpenProductCarousel={onOpenProductCarousel}
                 tab={links[0].hash}
                 isOpenModal={productModalState.isOpenModal}
@@ -190,27 +210,35 @@ const Product = () => {
                 ) : null}
               </div>
 
-              <div className={styles["product-general-information-box"]}>
-                <ProductGeneralInformation
-                  className={styles["product-general-information-box"]}
-                  currentProduct={currentProduct}
-                  imgSrc={currentProduct.imgs.imgGeneralInformation[0]}
-                />
-                <button
-                  onClick={onOpenProductCarousel.bind(
-                    links[links.length - 1].hash
-                  )}
-                  className={`${styles["product-general-information-box__btn"]} btn--border-blue`}
-                >
-                  Xem thêm <AiOutlineCaretRight />
-                </button>
-              </div>
-              <ProductReview currentProduct={currentProduct} />
+              <ProductGeneralInformation
+                onClick={onOpenProductCarousel.bind(
+                  links[links.length - 1].hash
+                )}
+                className={styles["product-general-information-box"]}
+                generalInformation={currentProduct.generalInformation}
+                imgGeneralInformation={
+                  currentProduct.imgs.imgGeneralInformation[0]
+                }
+                imgSrc={currentProduct.imgs.imgGeneralInformation[0]}
+              />
+
+              <ProductReview
+                type={currentProduct.type}
+                id={currentProduct._id}
+                imgCover={currentProduct.imgCover}
+                category={currentProduct.category}
+                title={currentProduct.title}
+                ratingAverage={currentProduct.ratingAverage}
+                ratingQuantity={currentProduct.ratingQuantity}
+                reviews={currentProduct.reviews}
+              />
             </div>
             <div className={styles.right}>
               <ProductStorage
-                currentProduct={currentProduct}
                 changeCurrentStorage={changeCurrentStorage}
+                otherVersions={currentProduct.otherVersions}
+                storage={currentProduct.storage}
+                internalMemory={currentProduct.configuration.internalMemory}
               />
               <ProductColor
                 colors={currentProduct.colors}
@@ -218,20 +246,19 @@ const Product = () => {
                 onChangeCurrentColor={changeCurrentColor}
               />
 
-              <div>
-                <div className={`${styles.price} flex-vt-ct`}>
-                  Giá: <Price price={currentProduct.price} />
-                </div>
-              </div>
-              <ProductPromotions currentProduct={currentProduct} />
-              <BtnBuy
+              <ProductPrice price={currentProduct.price} />
+              <ProductPromotions promotion={currentProduct.promotion} />
+              <Button
+                btnType="primary"
                 onClick={() => {
                   onOpenCheckoutModal();
                   setIsProductAdded(false);
                   onToggleModal();
                 }}
-                text="Mua ngay"
-              />
+              >
+                Mua ngay
+              </Button>
+
               <ProductAddedToCart
                 setIsProductAdded={setIsProductAdded}
                 imgCover={currentProduct.imgCover}
@@ -242,7 +269,9 @@ const Product = () => {
                 // the second last
                 tab={links[links.length - 2].hash}
                 onToggleModal={onToggleModal}
-                currentProduct={currentProduct}
+                configuration={currentProduct.configuration}
+                title={currentProduct.title}
+                type={currentProduct.type as "laptop" | "phone"}
                 onOpenProductCarousel={onOpenProductCarousel}
               />
             </div>
@@ -253,7 +282,7 @@ const Product = () => {
   );
 };
 
-export default React.memo(Product);
+export default Product;
 
 export const loader = ({ params, request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);

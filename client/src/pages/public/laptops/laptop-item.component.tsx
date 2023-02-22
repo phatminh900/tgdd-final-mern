@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./laptop-item.module.scss";
-import { ButtonStorage, ProductItem, ReviewOverall } from "components";
+import { Button, ProductItem, ReviewOverall } from "components";
 import Price from "components/price/price.component";
 import { ILaptopDocument } from "interfaces/allProductsType.interface";
 import useProductItemHook from "hooks/useProductItem.hook";
@@ -25,18 +25,16 @@ const LaptopItem = ({ laptop }: LaptopItemProps) => {
       <div className={`${styles.laptop} flex gap-8px`}>
         <div className={`${styles.storage} gap-4px flex`}>
           {currentLaptop.storage.map((st, i) => (
-            <ButtonStorage
+            <Button
               key={st}
-              configuration={currentLaptop.configuration}
-              changeCurrentStorage={changeCurrentStorage}
-              url={currentProduct.otherVersions[i]}
-              value={st}
-              className={`${
-                currentProduct.configuration.internalMemory === +st
-                  ? styles.active
-                  : ""
-              }`}
-            />
+              btnType="storage"
+              onClick={() =>
+                changeCurrentStorage(currentProduct.otherVersions[i])
+              }
+              active={currentProduct.configuration.internalMemory === +st}
+            >
+              {st}GB
+            </Button>
           ))}
         </div>
         <Price price={currentProduct.price} />

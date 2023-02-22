@@ -7,4 +7,5 @@ export interface ResponseStatusMessage extends ResponseStatus {
 
 export interface ResponseStatusData<T> extends ResponseStatus {
   data: T;
+  status?:string
 }

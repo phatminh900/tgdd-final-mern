@@ -10,7 +10,7 @@ import {
 import Cookies from "js-cookie";
 import styles from "./user-personal-information.module.scss";
 import { ROUTES } from "app-constants/navigation.constant";
-import { Input } from "components";
+import { Button, Input } from "components";
 import { useAuth } from "context/auth.context";
 
 import { updateUser } from "service/user.service";
@@ -20,9 +20,9 @@ import {
   ResponseStatusMessage,
 } from "interfaces/response.interface";
 import { IUserAccount } from "../order-history.interface";
-import BtnSubmit from "components/btn/btn-submit/btn-submit.component";
 
 import { JWTKEY } from "app-constants/browser.constatnt";
+import { BsCheckCircle } from "react-icons/bs";
 
 const UserPersonalInformation = () => {
   const navigate = useNavigate();
@@ -30,13 +30,17 @@ const UserPersonalInformation = () => {
   const userPersonalInfoValue = useActionData() as
     | ResponseStatusData<IUserAccount>
     | ResponseStatusMessage;
-  const  error  = useUserPersonalInformation(userPersonalInfoValue);
+  const error = useUserPersonalInformation(userPersonalInfoValue);
   const { pathname } = useLocation();
   const user = useAuth()?.user;
 
   if (!user || !Cookies.get(JWTKEY)) {
     return null;
   }
+  const text = navigation.state === "submitting" ? "Submitting..." : "Cập nhật";
+  const isSuccess =
+    userPersonalInfoValue && userPersonalInfoValue.status === "success";
+  const isLoading = navigation.state === "submitting";
   useEffect(() => {
     if (!user || !Cookies.get(JWTKEY)) {
       navigate(ROUTES.LOGIN);
@@ -65,21 +69,12 @@ const UserPersonalInformation = () => {
             {error}
           </p>
         )}
-        <BtnSubmit
-          className={`${styles["user-personal-info__btn"]} btn--blue flex-both-ct`}
-          isLoading={navigation.state === "submitting"}
-          isSuccess={
-            userPersonalInfoValue && userPersonalInfoValue.status === "success"
-          }
-          text={
-            navigation.state === "submitting" ? "Submitting..." : "Cập nhật"
-          }
-        />
-        {/* <button
-          className={`${styles["user-personal-info__btn"]} btn--blue flex-both-ct`}
-        >
-          Cập nhật
-        </button> */}
+        <Button btnType="secondary">
+          {!isSuccess && !isLoading && text}
+          {isLoading && text}
+          {isSuccess && <BsCheckCircle />}
+        </Button>
+   
       </Form>
     </>
   );

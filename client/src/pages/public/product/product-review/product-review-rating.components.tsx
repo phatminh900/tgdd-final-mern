@@ -2,25 +2,30 @@ import Cookies from "js-cookie";
 import { AiFillCamera } from "react-icons/ai";
 import ProductReviewStars from "./product-reviews-stars.component";
 import { Link } from "react-router-dom";
-import { BtnClose } from "components";
+import { BtnClose, Button } from "components";
 import styles from "./product-review.module.scss";
-import useAppStateHook from "store/appState/appState.hook";
-
-import { appStateActions } from "store/appState/app-state-slice";
-import BtnSubmit from "components/btn/btn-submit/btn-submit.component";
 import { JWTKEY } from "app-constants/browser.constatnt";
+import { appStateActions } from "store/appState/app-state-slice";
 import { IProductReviewRating } from "./product-review.interface";
-import { IProductType } from "interfaces/allProductsType.interface";
 import { useAppDispatch } from "store/hooks.store";
 import useProductReviewRating from "./product-review-rating.hook";
 import { IReviewDocument } from "service/review.service";
+import { BsCheckCircle } from "react-icons/bs";
 export interface ProductReviewRatingProps
-  extends IProductType,
-    IProductReviewRating {}
+  extends 
+    IProductReviewRating {
+      id:string,
+      title:string,
+      type:string;
+      imgCover:string
+    }
 
 const ProductReviewRating = ({
-  currentProduct,
+  title,
+  id,
+  imgCover,
   onToggleModal,
+  type,
   isOpenModal,
   onSubmitReview,
   userPreChooseRating,
@@ -53,8 +58,8 @@ const ProductReviewRating = ({
     const form = new FormData();
     // @ts-ignore
     form.append("review", reviewText);
-    form.append("productId", currentProduct?._id!);
-    form.append(currentProduct.type, currentProduct?._id!);
+    form.append("productId", id!);
+    form.append(type, id!);
     // @ts-ignore
     fileRef.current!.files[0] &&
       form.append(
@@ -67,10 +72,10 @@ const ProductReviewRating = ({
     form.append("rating", String(userRating));
     form.append("user", user._id);
 
-    onSubmitReview(form as unknown as IReviewDocument, currentProduct._id);
+    onSubmitReview(form as unknown as IReviewDocument, id);
     dispatch(appStateActions.setFinishLoading());
   };
-  if (!currentProduct) return null;
+  const text = isLoading ? "Submitting..." : "Gửi đánh giá";
 
   return (
     <>
@@ -93,13 +98,17 @@ const ProductReviewRating = ({
             <img
               height={65}
               width={65}
-              src={currentProduct.imgCover!}
+              src={imgCover!}
               alt="Product"
             />
-            <p>{currentProduct.title}</p>
+            <p>{title}</p>
           </div>
           <ProductReviewStars
             isOpenModal={isOpenModal}
+            title={title}
+            imgCover={imgCover}
+            id={id}
+            type={type}
             onToggleModal={onToggleModal}
             onSetUserRating={onSetUserRating}
             userPreChooseRating={userRating}
@@ -146,11 +155,11 @@ const ProductReviewRating = ({
                 {error}
               </p>
             ) : (
-              <BtnSubmit
-                isLoading={isLoading}
-                isSuccess={isSuccess}
-                text={isLoading ? "Submitting..." : "Gửi đánh giá"}
-              />
+              <Button btnType="secondary">
+                {!isSuccess && !isLoading && text}
+                {isLoading && text}
+                {isSuccess && <BsCheckCircle />}
+              </Button>
             )}
           </form>
         </div>

@@ -1,7 +1,6 @@
 import { AuthComponent, Input } from "components";
 
 import useLoginHook from "./login.hook";
-import BtnSubmit from "components/btn/btn-submit/btn-submit.component";
 import {
   Link,
   LoaderFunctionArgs,
@@ -15,6 +14,8 @@ import {
   ResponseStatusData,
   ResponseStatusMessage,
 } from "interfaces/response.interface";
+import useChangeTextSubmit from "hooks/useChangeTextSubmit.hook";
+import BtnSubmit from "components/btn/btn-submit/btn-submit.component";
 
 const Login = () => {
   const loginData = useActionData() as
@@ -24,6 +25,11 @@ const Login = () => {
   const { userValue, changeUserValue, error, successMsg } =
     useLoginHook(loginData);
   const navigation = useNavigation();
+  const text = navigation.state === "submitting" ? "Logging..." : "Login";
+  const { isLoading, isSuccess } = useChangeTextSubmit(
+    navigation,
+    loginData?.status
+  );
   return (
     <AuthComponent successMessage={successMsg} error={error}>
       <Input
@@ -41,11 +47,9 @@ const Login = () => {
         type="password"
       />
       {/* <Link  */}
-      <BtnSubmit
-        isLoading={navigation.state === "submitting"}
-        isSuccess={loginData ? loginData.status === "success" : false}
-        text={navigation.state === "submitting" ? "Logging..." : "Login"}
-      />
+      <BtnSubmit isSuccess={isSuccess} isLoading={isLoading} text={text}/>
+ 
+
       <Link className="navigate-auth-link" to={ROUTES.SIGNUP}>
         Signup here.
       </Link>

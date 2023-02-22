@@ -13,29 +13,41 @@ import {
   ICurrentProduct,
   IProductHighlightsImgState,
 } from "../product.interface";
-import { IPhoneDocument } from "interfaces/allProductsType.interface";
+import { IProductType } from "interfaces/allProductsType.interface";
 import ProductCarouselList from "./product-carousel-list.component";
 import ProductCarouselMain from "./product-carousel-main.component";
 
 interface ProductCarouselProps
   extends IProductModalState,
-    ICurrentProduct,
     IProductHighlightsImgState {
   slidesImgs: string[];
+  imgs: IProductType["currentProduct"]["imgs"];
+  configuration: IProductType["currentProduct"]["configuration"];
+  title: string;
+  imgConfiguration: string;
+  imgGeneralInformation: string;
+  generalInformation: string[];
+  type: "phone" | "laptop";
+
   links: ILinks[];
   linksColor: { id: string; hash: string; title: string }[];
 }
 const ProductCarousel = ({
-  currentProduct,
   links,
+  imgs,
+  type,
+  title,
+  configuration,
+  imgConfiguration,
   linksColor,
   slidesImgs,
+  generalInformation,
+  imgGeneralInformation,
   isOpenModal,
   currentHighlightsImgNumber,
   onSetCurrentHighlightsImgNumber,
   onToggleModal,
 }: ProductCarouselProps) => {
-  const navigate = useNavigate();
   const tabElements = [
     <ProductInfoSlide
       currentHighlightsImgNumber={currentHighlightsImgNumber}
@@ -47,19 +59,21 @@ const ProductCarousel = ({
     // colors,
     ...linksColor.map((linkColor) => (
       <ProductInfoSlide
-        key={uuidv4()}
+        key={linkColor.id}
         onToggleModal={onToggleModal}
         isOpenModal={isOpenModal}
-        slidesImgs={currentProduct.imgs[linkColor.hash]}
+        slidesImgs={imgs[linkColor.hash]}
       />
     )),
-    <ProductConfigurationCarousel currentProduct={currentProduct} />,
-    <ProductGeneralInformation
-      imgSrc={currentProduct.imgs.imgGeneralInformation[0]!}
-      currentProduct={currentProduct}
+    <ProductConfigurationCarousel
+      type={type}
+      title={title}
+      imgConfiguration={imgConfiguration}
+      configuration={configuration}
     />,
+   
   ];
-  const { hash } = useLocation();
+
   return (
     <div className={styles["product-details"]}>
       <ProductCarouselList links={links} />
@@ -79,4 +93,4 @@ const ProductCarousel = ({
   );
 };
 
-export default React.memo(ProductCarousel);
+export default ProductCarousel;

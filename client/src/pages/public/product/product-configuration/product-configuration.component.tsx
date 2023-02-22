@@ -1,147 +1,159 @@
 import React from "react";
 import { AiOutlineCaretRight } from "react-icons/ai";
 import styles from "./product-configuration.module.scss";
-import { isPhoneDocument } from "utils/recognizeDocument";
 import { ICurrentProduct, IProductModalState } from "../product.interface";
-interface ProductConfigurationProps
-  extends ICurrentProduct,
-    IProductModalState {
+import { Button } from "components";
+import {
+  ILaptopDocument,
+  IPhoneDocument,
+} from "interfaces/allProductsType.interface";
+interface ProductConfigurationProps extends IProductModalState {
   tab: string;
+  configuration: ICurrentProduct["currentProduct"]["configuration"];
+  type: "phone" | "laptop";
+  title: string;
 }
 
 const ProductConfiguration = ({
-  currentProduct,
+  type,
+  configuration,
+  title,
   tab,
   onOpenProductCarousel,
 }: ProductConfigurationProps) => {
-  const configuration = currentProduct?.configuration;
   let content = <></>;
-  if (isPhoneDocument(currentProduct)) {
-    const configuration = currentProduct?.configuration;
+  if (type === "phone") {
+    const phoneConfiguration = configuration as IPhoneDocument["configuration"];
 
     content = (
       <div className={styles.configurations}>
         <h3 className={styles.configurations__header}>
-          Cấu hình điện thoại {currentProduct?.title}
+          Cấu hình điện thoại {title}
         </h3>
         <ul className={styles.configurations__list}>
           <li>
             <p>Màn hình</p>
             <p>
-              {configuration.monitor.technology} ,
-              {configuration.monitor.broadScreen}"
+              {phoneConfiguration.monitor.technology} ,
+              {phoneConfiguration.monitor.broadScreen}"
             </p>
           </li>
           <li>
             <p>Hệ điều hành</p>
             <p>
-              {configuration.operatingSystem.type}{" "}
-              {configuration.operatingSystem.number}
+              {phoneConfiguration.operatingSystem.type}{" "}
+              {phoneConfiguration.operatingSystem.number}
             </p>
           </li>
           <li>
             <p>Camera sau</p>
             <p>
-              {configuration.rearCam.quantity}camera{" "}
-              {configuration.rearCam.quality}
+              {phoneConfiguration.rearCam.quantity}camera{" "}
+              {phoneConfiguration.rearCam.quality}
               MP
             </p>
           </li>
           <li>
             <p>Camera trước</p>
-            <p>{configuration.frontCam.quality} MP</p>
+            <p>{phoneConfiguration.frontCam.quality} MP</p>
           </li>
           <li>
             <p>Chip</p>
             <p>
-              {configuration.chip.type} {configuration.chip.technology}{" "}
-              {configuration.chip.number}
+              {phoneConfiguration.chip.type}{" "}
+              {phoneConfiguration.chip.technology}{" "}
+              {phoneConfiguration.chip.number}
             </p>
           </li>
           <li>
             <p>Ram</p>
-            <p>{configuration.ram} GB</p>
+            <p>{phoneConfiguration.ram} GB</p>
           </li>
           <li>
             <p>Bộ nhớ trong</p>
-            <p>{configuration.internalMemory}GB</p>
+            <p>{phoneConfiguration.internalMemory}GB</p>
           </li>
           <li>
             <p>Sim</p>
             <p>
-              {configuration.sim.quantity} {configuration.sim.type}SIM
+              {phoneConfiguration.sim.quantity} {phoneConfiguration.sim.type}SIM
             </p>
           </li>
           <li>
             <p>Pin,Sạc</p>
             <p>
-              {configuration.battery.volume} mAh, {configuration.battery.charge}
-              W
+              {phoneConfiguration.battery.volume} mAh,{" "}
+              {phoneConfiguration.battery.charge}W
             </p>
           </li>
         </ul>
-        <button
+        <Button
+          btnType="neutral"
           onClick={onOpenProductCarousel?.bind(tab)}
-          className={`${styles.configurations__btn}  btn--border-blue `}
+          className={`${styles.configurations__btn} `}
         >
           Xem thêm cấu hình chi tiết <AiOutlineCaretRight />
-        </button>
+        </Button>
       </div>
     );
   }
-  if (!isPhoneDocument(currentProduct)) {
-    const configuration = currentProduct.configuration;
+  if (type === "laptop") {
+    const laptopConfiguration =
+      configuration as ILaptopDocument["configuration"];
     content = (
       <div className={styles.configurations}>
         <h3 className={styles.configurations__header}>
-          Cấu hình Laptop {currentProduct?.title}
+          Cấu hình Laptop {title}
         </h3>
         <ul className={styles.configurations__list}>
           <li>
             <p>CPU</p>
             <p>
-              {configuration.cpu.type} {configuration.cpu.version}
+              {laptopConfiguration.cpu.type} {laptopConfiguration.cpu.version}
             </p>
           </li>
           <li>
             <p>Ổ cứng</p>
-            <p>{configuration.internalMemory} SSD</p>
+            <p>{laptopConfiguration.internalMemory} SSD</p>
           </li>
           <li>
             <p>Màn hình</p>
             <p>
-              {configuration.screen.inch}, {configuration.screen.technology}
+              {laptopConfiguration.screen.inch},{" "}
+              {laptopConfiguration.screen.technology}
             </p>
           </li>
           <li>
             <p>Card màn hình</p>
-            <p>{configuration.cardScreen.type} </p>
+            <p>{laptopConfiguration.cardScreen.type} </p>
           </li>
           <li>
             <p>Đặc biệt</p>
-            <p>{configuration.special}</p>
+            <p>{laptopConfiguration.special}</p>
           </li>
           <li>
             <p>Thiết kế</p>
             {/* @ts-ignore */}
-            <p>{configuration.design}</p>
+            <p>{laptopConfiguration.design}</p>
           </li>
 
           <li>
             <p>Thời điểm ra mắt</p>
-            <p>{configuration.launchTime}</p>
+            <p>{laptopConfiguration.launchTime}</p>
           </li>
         </ul>
-        <button
+
+        <Button
+          className={styles.configurations__btn}
           onClick={onOpenProductCarousel?.bind(tab)}
-          className={`${styles.configurations__btn}  btn--border-blue `}
+          btnType="neutral"
         >
           Xem thêm cấu hình chi tiết <AiOutlineCaretRight />
-        </button>
+        </Button>
       </div>
     );
   }
-  return configuration ? content : null;
+  return content;
 };
 
-export default React.memo(ProductConfiguration);
+export default (ProductConfiguration);

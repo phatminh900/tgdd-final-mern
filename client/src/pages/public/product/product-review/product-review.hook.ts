@@ -8,7 +8,7 @@ import {
   ILaptopDocument,
   IPhoneDocument,
 } from "interfaces/allProductsType.interface";
-const useProductReview = (currentProduct: IPhoneDocument | ILaptopDocument) => {
+const useProductReview = (category:string) => {
   const { isOpenModal, onToggleModal, setIsOpenModal } = useModalHook();
   const dispatch = useAppDispatch();
   const [currentRating, setCurrentRating] = useState(0);
@@ -22,7 +22,7 @@ const useProductReview = (currentProduct: IPhoneDocument | ILaptopDocument) => {
   const onSubmitReview = async (review: IReviewDocument, productId: string) => {
     await dispatch(
       sendReview(
-        currentProduct.category as "laptops" | "phones",
+        category as "laptops" | "phones",
         review,
         productId
       )

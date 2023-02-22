@@ -1,10 +1,14 @@
-import React from "react";
-import { BiLoader } from "react-icons/bi";
+import { GiBroadsword } from "react-icons/gi";
 import styles from "./page-loading.module.scss";
+import { useEffect, useRef } from "react";
 const PageLoading = () => {
+
   return (
     <div className={`${styles.loading} flex-both-ct`}>
-      <BiLoader />
+      <div className={`${styles.content} flex-both-ct flex`}>
+        <GiBroadsword />
+        <h2>LOADING...</h2>
+      </div>
     </div>
   );
 };

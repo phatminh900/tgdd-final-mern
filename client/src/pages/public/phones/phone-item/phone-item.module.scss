@@ -21,6 +21,10 @@ $gap-line: 8px;
   & > button {
     padding: 0.6rem;
     font-size: var(--small-font-size);
+    &.active {
+      color: var(--color-tertiary);
+      border: 1px solid var(--color-tertiary);
+    }
   }
   & > button:hover {
     color: var(--color-tertiary);

@@ -26,11 +26,8 @@ const useProductItemHook = (
 
   const [currentProduct, setCurrentProduct] = useState(getProductType());
   const [currentUrl, setCurrentUrl] = useState(product.slug);
-  const changeCurrentStorage = (e: React.MouseEvent) => {
-    // e.stopPropagation();
-    const currentProductUrl = (e.target as HTMLDivElement).dataset.url!;
-    setCurrentUrl(currentProductUrl);
-  };
+    const changeCurrentStorage=(url:string)=>setCurrentUrl(url);
+
   useEffect(() => {
     if (initial) {
       initial = false;

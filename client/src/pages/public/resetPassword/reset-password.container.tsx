@@ -1,7 +1,6 @@
 import { AuthComponent, Input } from "components";
 import BtnSubmit from "components/btn/btn-submit/btn-submit.component";
 import { ResponseStatusMessage } from "interfaces/response.interface";
-import React from "react";
 import {
   LoaderFunctionArgs,
   useActionData,
@@ -9,17 +8,20 @@ import {
 } from "react-router-dom";
 import { resetPassword } from "service/user.service";
 import useResetPasswordHook from "./reset-password.hook";
+import useChangeTextSubmit from "hooks/useChangeTextSubmit.hook";
 const ResetPassword = () => {
   const resetPasswordValue = useActionData() as ResponseStatusMessage;
   const { userValue, changeUserValue, successMessage, error } =
     useResetPasswordHook(resetPasswordValue);
   const navigation = useNavigation();
+  const { isLoading, isSuccess } = useChangeTextSubmit(
+    navigation,
+    resetPasswordValue.status
+  );
+  const text =
+    navigation.state === "submitting" ? "Submitting" : "Change your password";
   return (
-    <AuthComponent
-      successMessage={successMessage }
-     
-      error={error}
-    >
+    <AuthComponent successMessage={successMessage} error={error}>
       <Input
         value={userValue.password}
         onChange={changeUserValue}
@@ -34,17 +36,9 @@ const ResetPassword = () => {
         id="passwordConfirm"
         type="password"
       />
-      <BtnSubmit
-        isLoading={navigation.state === "submitting"}
-        isSuccess={
-          resetPasswordValue ? resetPasswordValue.status === "success" : false
-        }
-        text={
-          navigation.state === "submitting"
-            ? "Submitting"
-            : "Change your password"
-        }
-      />
+      <BtnSubmit isLoading={isLoading} isSuccess={isSuccess} text={text} />
+
+      
     </AuthComponent>
   );
 };
