@@ -1,6 +1,6 @@
 .user-review {
   flex-direction: column;
-  margin: 1.2rem 0 4.4rem;
+  margin: var(--spacing-md-2) 0 4.4rem;
   &__name {
     font-weight: bold;
   }

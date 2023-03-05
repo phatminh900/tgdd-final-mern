@@ -6,15 +6,14 @@ interface ISlidesProps {
   onToggleModal?: () => void;
   slide: string | string[];
 }
-const Slides = ({
+const Slide = ({
   onToggleModal,
   slide,
   index,
 
-  currentSlide,
 }: ISlidesProps) => {
   return (
-    <div onClick={onToggleModal} className={`${styles.slide} slide`}>
+    <div data-testid='slide' onClick={onToggleModal} className={`${styles.slide} slide`}>
       {typeof slide === "string" ? (
         <img src={slide} alt="Slider" />
       ) : (
@@ -24,4 +23,4 @@ const Slides = ({
   );
 };
 
-export default React.memo(Slides);
+export default React.memo(Slide);

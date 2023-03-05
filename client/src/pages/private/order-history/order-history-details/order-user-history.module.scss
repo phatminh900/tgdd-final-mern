@@ -15,12 +15,12 @@
     }
   }
   &__item {
-    padding: 1.2rem 0;
+    padding: var(--spacing-md-2) 0;
     @include respond(tab-land) {
       font-size: var(--medium-font-size);
       grid-template-columns: 8fr 2fr;
       gap: 8px;
-      padding: 1.2rem 1.6rem;
+      padding: var(--spacing-md-2) 1.6rem;
       border-radius: var(--round-border-sm);
       border: 1px solid var(--border-color);
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);

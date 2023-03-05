@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./product-general-information.module.scss";
-import { v4 as uuidv4 } from "uuid";
-import { ICurrentProduct } from "../product.interface";
 import { Button } from "components";
 import { AiOutlineCaretRight } from "react-icons/ai";
 interface ProductGeneralInformationProps {
@@ -23,7 +21,7 @@ const ProductGeneralInformation = ({
         {/*  */}
         <h3>Thông tin sản phẩm</h3>
         {generalInformation.map((info) => (
-          <p key={uuidv4()}>{info}</p>
+          <p key={info}>{info}</p>
         ))}
 
         <img
@@ -33,15 +31,10 @@ const ProductGeneralInformation = ({
           alt="general information about iphone"
         />
       </div>
-      <Button btnType="neutral">
+      <Button btnType="neutral"   className={`${styles["product-general-information-box__btn"]}`}>
         Xem thêm <AiOutlineCaretRight />
       </Button>
-      <button
-        onClick={onClick}
-        className={`${styles["product-general-information-box__btn"]} btn--border-blue`}
-      >
-        Xem thêm <AiOutlineCaretRight />
-      </button>
+
     </div>
   );
 };

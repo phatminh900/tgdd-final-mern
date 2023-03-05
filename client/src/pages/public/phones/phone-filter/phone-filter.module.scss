@@ -1,8 +1,8 @@
 .phone-filter {
   &__list {
-    margin: 3.2rem 0 1.6rem 0;
+    margin: var(--spacing-huge) 0 1.6rem 0;
 
-    gap: 1.2rem;
+    gap: var(--spacing-md-2);
     &.active {
       border-color: var(--color-tertiary);
     }
@@ -77,7 +77,7 @@
 
   &__options,
   &__actions {
-    gap: 1.2rem;
+    gap: var(--spacing-md-2);
   }
   &__actions {
     margin-top: 2rem;
@@ -96,8 +96,8 @@
     }
   }
   &__firms {
-    gap: 1.2rem;
-    margin-bottom: 3.2rem;
+    gap: var(--spacing-md-2);
+    margin-bottom: var(--spacing-huge);
     & .phone-filter__firm-btn {
       border-radius: 100px;
       padding: 0.4rem 1.6rem;

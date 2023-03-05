@@ -20,8 +20,8 @@ const OrderHistory = () => {
     >
       <OrderHistoryNavigate />
       <div>
-        <OrderHistoryGreetUser user={user} auth={auth} />
-        <OrderHistoryGreetUserSmall user={user} auth={auth} />
+        <OrderHistoryGreetUser user={user} />
+        <OrderHistoryGreetUserSmall user={user}  />
         <div className={styles["order-history__list-box"]}>
           <Outlet />
         </div>

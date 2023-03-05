@@ -22,9 +22,9 @@ const ForgotPassword = () => {
       : "Send email to reset password";
   const { isLoading, isSuccess } = useChangeTextSubmit(
     navigation,
-     forgotPasswordValue.status
+     forgotPasswordValue?.status
   );
-  // TODO: CHANGE LINK RESET PASSWORD
+
   return (
     <>
       <AuthComponent successMessage={success} error={error}>

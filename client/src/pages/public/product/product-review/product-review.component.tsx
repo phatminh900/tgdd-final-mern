@@ -1,6 +1,6 @@
 import React from "react";
 import { GiAlliedStar } from "react-icons/gi";
-import { v4 as uuidv4 } from "uuid";
+
 
 import styles from "./product-review.module.scss";
 import { Button, Modal, Ratings, ReviewOverall, UserReview } from "components";
@@ -92,7 +92,11 @@ const ProductReview = ({
           <Ratings reviews={reviews} ratingQuantity={ratingQuantity} />
 
           {reviews.slice(0, 2).map((review) => (
-            <UserReview key={uuidv4()} review={review} />
+            <UserReview key={review._id} id={review._id}
+            rating={review.rating}
+            photo={review.photo}
+            review={review.review}
+            user={review.user} />
           ))}
           <div
             className={`${styles["product-reviews__actions"]} flex gap-12px`}
@@ -116,4 +120,4 @@ const ProductReview = ({
   );
 };
 
-export default ProductReview;
+export default React.memo(ProductReview);

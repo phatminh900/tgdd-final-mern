@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useState, useCallback } from "react";
+import { useReducer, useEffect, useState, useCallback, useMemo } from "react";
 import {
   ILaptopDocument,
   IPhoneDocument,
@@ -6,7 +6,6 @@ import {
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "store/hooks.store";
 import { omit } from "lodash";
-import { v4 as uuidv4 } from "uuid";
 import { ICartProductDocument } from "store/cart/cartProductDocument";
 import { cartSliceAction } from "store/cart/cart-slice";
 import useWindowDimensions from "hooks/useWindowDimensions";
@@ -64,37 +63,43 @@ const useProductHook = (currentProduct: IPhoneDocument | ILaptopDocument) => {
   const [currentHighlightsImgNumber, setCurrentHighlightsImgNumber] =
     useState(0);
 
-  const [currentColor, setCurrentColor] = useState(currentProduct?.colors[0]);
+  const [currentColor, setCurrentColor] = useState(currentProduct.colors[0]);
 
-  const slidesImgs = currentProduct?.imgs.imgHighlights;
-  const linksColor = Object.keys(
-    omit(currentProduct?.imgs, [
-      "imgHighlights",
-      "imgConfiguration",
-      "imgGeneralInformation",
-    ])
-  ).map((key) => ({ id: uuidv4(), title: key, hash: key }));
-  const links = [
-    {
-      id: uuidv4(),
-      title: "Điểm nổi bậc",
-      hash: "hightlight",
-    },
-    ...linksColor,
-    {
-      id: uuidv4(),
-      title: "Thông số kĩ thuật",
-      hash: "configurations",
-    },
-    
-  ];
+  const slidesImgs = currentProduct.imgs.imgHighlights;
+  const linksColor = useMemo(
+    () =>
+      Object.keys(
+        omit(currentProduct?.imgs, [
+          "imgHighlights",
+          "imgConfiguration",
+          "imgGeneralInformation",
+        ])
+      ).map((key) => ({ id: crypto.randomUUID(), title: key, hash: key })),
+    [currentProduct.imgs]
+  );
+  const links = useMemo(
+    () => [
+      {
+        id: crypto.randomUUID(),
+        title: "Điểm nổi bậc",
+        hash: "highlight",
+      },
+      ...linksColor,
+      {
+        id: crypto.randomUUID(),
+        title: "Thông số kĩ thuật",
+        hash: "configurations",
+      },
+    ],
+    []
+  );
 
-  const onSetCurrentHighlightsImgNumber = (number: number) => {
+  const onSetCurrentHighlightsImgNumber = useCallback((number: number) => {
     setCurrentHighlightsImgNumber(number);
-  };
-  const onToggleModal = () => {
+  }, []);
+  const onToggleModal = useCallback(() => {
     dispatchProductModalState({ type: ProductModalAction.TOGGLE_MODAL });
-  };
+  }, []);
 
   const onOpenCheckoutModal = () =>
     dispatchProductModalState({ type: ProductModalAction.OPEN_CHECKOUTMODAL });
@@ -110,19 +115,19 @@ const useProductHook = (currentProduct: IPhoneDocument | ILaptopDocument) => {
     // dispatch(cartSliceAction.addToCart(product));
   };
 
-  const changeCurrentStorage = (url:string) => {
+  const changeCurrentStorage = (url: string) => {
     navigate(location.pathname.replace(slug!, url));
   };
   const changeCurrentColor = (color: string) => {
     setCurrentColor(color);
   };
 
-  function onOpenProductCarousel() {
+  const onOpenProductCarousel = useCallback(function () {
     // @ts-ignore this===tab
     navigate(location.pathname + `#${this}`);
     dispatchProductModalState({ type: ProductModalAction.CLOSE_CHECKOUTMODAL });
     dispatchProductModalState({ type: ProductModalAction.TOGGLE_MODAL });
-  }
+  }, []);
   // Product added
   useEffect(() => {
     if (isProductAdded && width > 1200) {

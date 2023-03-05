@@ -8,7 +8,7 @@
 .search {
   input {
     display: block;
-    padding: 1.2rem 9.6rem 1.2rem 1.2rem;
+    padding: var(--spacing-md-2) 9.6rem var(--spacing-md-2) var(--spacing-md-2);
     border: none;
     background-color: var(--color-white);
     border-radius: 8px;
@@ -29,12 +29,12 @@
   width: 115%;
   z-index: 10;
   top: 88%;
-  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 var(--spacing-md-2) var(--spacing-huge) rgba(0, 0, 0, 0.3);
 
   img {
     width: 25%;
     @include respond(tab-land) {
-      width: 8%;
+      width: auto;
     }
   }
   li:not(:last-child),
@@ -44,7 +44,7 @@
   }
   button {
     display: flex;
-    gap: 1.2rem;
+    gap: var(--spacing-md-2);
     align-items: center;
     justify-content: flex-start;
   }

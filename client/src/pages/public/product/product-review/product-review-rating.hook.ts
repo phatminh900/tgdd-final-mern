@@ -1,4 +1,4 @@
-import  { useState, useRef, useEffect } from "react";
+import  { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import {  useLocation } from "react-router-dom";
 import { IAuthContext, useAuth } from "context/auth.context";
@@ -12,14 +12,15 @@ const useProductReviewRating = (userPreChooseRating: number) => {
   const { pathname } = useLocation();
   // input
   const [userRating, setUserRating] = useState(userPreChooseRating);
-  const onSetUserRating = (rating: number) => setUserRating(rating);
+  const onSetUserRating = (rating: number) => setUserRating(rating)
   const [reviewText, setReviewText] = useState("");
   const fileRef = useRef<null | HTMLInputElement>(null);
+  
   // parent
-  useEffect(() => {
-    // after error user typing clear error
-    userRating && reviewText && dispatch(appStateActions.resetState());
-  }, [userRating, reviewText, dispatch]);
+  // useEffect(() => {
+  //   // after error user typing clear error
+  //   userRating && reviewText && dispatch(appStateActions.resetState());
+  // }, [userRating, reviewText, dispatch]);
   return {
     user,
     isLoading,

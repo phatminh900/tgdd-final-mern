@@ -12,6 +12,7 @@ import ProductItem from "./product/product-item/product-item.component";
 import ErrorBoundary from "./error-boundary/error-boundary";
 import AuthComponent from "./auth-component/auth-component.component";
 import { Button } from "./btn";
+import { LinksHierarchy } from "./links-hierarchy";
 import { Price } from "./price";
 export {
   ErrorBoundary,
@@ -28,5 +29,6 @@ export {
   Ratings,
   ProductHeader,
   ProductItem,
-  Button
+  Button,
+  LinksHierarchy
 };

@@ -5,19 +5,19 @@ import { AiOutlineMail } from "react-icons/ai";
 
 import styles from '../../order-history.module.scss'
 import { ROUTES } from "app-constants/navigation.constant";
-import { IAuthContext } from "context/auth.context";
+import { IAuthContext, useAuth } from "context/auth.context";
 
 type OrderHistoryGreetUserSmallProps = {
   user: {
     name: string;
     email: string;
   };
-  auth: IAuthContext|null;
+
 };
 const OrderHistoryGreetUserSmall = ({
   user,
-  auth,
 }: OrderHistoryGreetUserSmallProps) => {
+  const auth=useAuth()
   const navigate = useNavigate();
 
   return (

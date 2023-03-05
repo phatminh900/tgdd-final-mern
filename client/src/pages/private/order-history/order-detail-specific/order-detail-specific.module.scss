@@ -8,7 +8,7 @@
   }
   &__order-name {
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1.2rem;
+    padding-bottom: var(--spacing-md-2);
   }
 
   &__product-list {

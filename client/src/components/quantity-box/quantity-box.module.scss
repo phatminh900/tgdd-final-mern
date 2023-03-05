@@ -1,7 +1,7 @@
 .quantity-box {
   &__btn-quantity,
   &__quantity {
-    width: 3.2rem;
+    width: var(--spacing-huge);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,10 +10,10 @@
   }
   &__btn-quantity {
     color: var(--color-tertiary);
-    font-size: 2.4rem;
+    font-size: var(--spacing-huge);
     font-weight: 500;
     &--decrease {
-      margin-left: 1.2rem;
+      margin-left: var(--spacing-md-2);
     }
   }
 }

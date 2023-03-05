@@ -11,7 +11,7 @@ const ProductColor = ({
   currentColor,
 }: ProductColorProps) => {
   return (
-    <div className={`${styles.colors}  flex`}>
+    <div data-testid="product-colors" className={`${styles.colors}  flex`}>
       {colors.map((color: string) => (
         <button
           onClick={(e) =>

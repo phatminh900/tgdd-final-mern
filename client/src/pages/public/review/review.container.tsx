@@ -27,7 +27,11 @@ const Review = () => {
 
   return (
     <div className={styles.reviews}>
-      <ReviewHeader reviews={reviews} slug={slug!} />
+      <ReviewHeader
+        title={reviews.title}
+        category={reviews.category}
+        slug={slug!}
+      />
       <div className={styles.reviews__body}>
         <h3>
           {reviews.ratingQuantity} đánh giá {reviews.title}
@@ -42,7 +46,14 @@ const Review = () => {
           />
           <ul className={styles["reviews__reviews-list"]}>
             {currentReviews.map((review) => (
-              <UserReview key={review._id} review={review} />
+              <UserReview
+                key={review._id}
+                id={review._id}
+                rating={review.rating}
+                photo={review.photo}
+                review={review.review}
+                user={review.user}
+              />
             ))}
           </ul>
           <ReviewPagination

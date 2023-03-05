@@ -1,0 +1,26 @@
+.links {
+    gap:var(--spacing-sm);
+    a {
+      display: block;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+      &:visited{
+        color:var(--color-tertiary)
+      }
+    }
+    li {
+      display: flex;
+      align-items: center;
+      &:not(:last-child)::after {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-bottom: 1px solid #333;
+        border-right: 1px solid #333;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  

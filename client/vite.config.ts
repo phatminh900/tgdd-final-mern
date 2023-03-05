@@ -10,8 +10,12 @@ export default defineConfig({
     include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     globals: true,
     environment: "jsdom",
-    setupFiles: ["whatwg-fetch"],
+    setupFiles: ['./src/test/setup.ts',"whatwg-fetch"],
     clearMocks: true,
+    css:true,
+
+    
+    passWithNoTests:true
   },
   build: {
     // generate manifest.json in outDir

@@ -8,14 +8,13 @@ type ProductCarouselListProps = {
 };
 const ProductCarouselList = ({ links }: ProductCarouselListProps) => {
   const { hash } = useLocation();
-
   const navigate = useNavigate();
   return (
     <ul className={`${styles["product-details__list"]} flex`}>
       {links.map((link, i) => {
         return (
           <li
-            data-test={`#${encodeURI(link.hash)}`}
+            aria-label={`#${encodeURI(link.hash)}`}
             data-testid={`#${encodeURI(link.hash)}`}
             className={`${styles["product-details__title-list"]} ${
               encodeURI(link.hash) === hash.replace("#", "")
@@ -26,7 +25,7 @@ const ProductCarouselList = ({ links }: ProductCarouselListProps) => {
           >
             <button
               onClick={() => {
-                navigate(`#${link.hash}`);
+                navigate(`#${encodeURI(link.hash)}`);
               }}
             >
               {link.title}

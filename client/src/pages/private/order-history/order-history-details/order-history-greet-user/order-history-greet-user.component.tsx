@@ -1,17 +1,16 @@
 import { ROUTES } from "app-constants/navigation.constant";
-import { IAuthContext } from "context/auth.context";
+import { IAuthContext, useAuth } from "context/auth.context";
 import { useNavigate } from "react-router-dom";
-import styles from '../../order-history.module.scss'
-
+import styles from "../../order-history.module.scss";
 
 type OrderHistoryGreetUserProps = {
   user: {
     name: string;
     email: string;
   };
-  auth: IAuthContext|null;
 };
-const OrderHistoryGreetUser = ({ user, auth }: OrderHistoryGreetUserProps) => {
+const OrderHistoryGreetUser = ({ user }: OrderHistoryGreetUserProps) => {
+  const auth = useAuth();
   const navigate = useNavigate();
   return (
     <div className={`${styles["order-history__greeting"]} flex-space-between`}>

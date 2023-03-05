@@ -1,7 +1,7 @@
 @import "../../../../styles/_mixins/mixins";
 .nav {
   @include respond(tab-land) {
-    padding: 0.8rem 1.2rem;
+    padding: 0.8rem var(--spacing-md-2);
   }
 }
 .header-top {
@@ -11,7 +11,7 @@
   @include respond(tab-land) {
     justify-items: start;
     grid-template-columns: 1fr 2fr 2fr 1fr;
-    padding: 1.2rem 0 0 0 !important;
+    padding:  0 !important;
   }
 }
 .logo {
@@ -45,7 +45,7 @@
 .order-history {
   width: 10rem;
   display: block;
-  font-size: 1.2rem;
+  font-size: var(--spacing-md-2);
   text-align: center;
 }
 .search-box {
@@ -66,7 +66,7 @@
   flex-direction: column;
   display: none;
   svg {
-    font-size: 2.4rem;
+    font-size: var(--spacing-huge);
   }
   @include respond(tab-land) {
     display: flex;
@@ -104,7 +104,7 @@
     right: 0;
     bottom: 0;
     translate: 150%;
-    padding: 1.2rem !important;
+    padding: var(--spacing-md-2) !important;
     transition: translate 0.8s;
 
     &.active {
@@ -151,7 +151,7 @@
 .link {
   @include respond(tab-land) {
     color: var(--color-grey-text);
-    padding: 1.2rem;
+    padding: var(--spacing-md-2);
     border: 1px solid var(--color-border);
     border-radius: var(--round-border-sm);
     white-space: nowrap;

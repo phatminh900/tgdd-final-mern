@@ -1,5 +1,5 @@
 .cart-item {
-  padding: 1.2rem 0;
+  padding: var(--spacing-md-2) 0;
   display: flex;
   justify-content: space-between;
   min-height: 12.5rem;
@@ -59,7 +59,7 @@
     }
   }
   &__btn-color {
-    margin: 1.2rem 0;
+    margin: var(--spacing-md-2) 0;
   }
   &__colors {
     position: relative;
@@ -67,10 +67,10 @@
   &__colors-list {
     width: 20rem;
     margin-top: -0.4rem;
-    box-sizing: 1.2rem 1.2rem 3.2rem rgba(0, 0, 0, 0.1);
+    box-sizing: var(--spacing-md-2) var(--spacing-md-2) var(--spacing-huge) rgba(0, 0, 0, 0.1);
     background-color: var(--color-white);
     border: 1px solid var(--border-color);
-    padding: 1rem 1.2rem;
+    padding: 1rem var(--spacing-md-2);
     font-size: var(--medium-font-size);
     border-radius: var(--round-border-sm);
     color: var(--color-tertiary);

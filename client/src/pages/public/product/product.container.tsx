@@ -26,6 +26,7 @@ import ProductHeader from "./product-header/product-header.component";
 import { useEffect } from "react";
 import ProductInfo from "./product-info/product-info.component";
 import ProductPrice from "./product-price/product-price.component";
+import ProductConfigurationImgBox from "./product-configuration-img-box/product-configuration-img-box.component";
 
 export interface ILinks {
   id: string;
@@ -152,16 +153,11 @@ const Product = () => {
               type={currentProduct.type as "laptop" | "phone"}
               onOpenProductCarousel={onOpenProductCarousel}
             />
-            <div className={styles["Product-configuration-img-box"]}>
-              {isPhoneDocument(currentProduct) ? (
-                <img
-                  width={710}
-                  height={530}
-                  src={currentProduct.imgs.imgConfiguration[0]}
-                  alt={`${currentProduct.title} configuration`}
-                />
-              ) : null}
-            </div>
+            <ProductConfigurationImgBox
+              title={currentProduct.title}
+              type={currentProduct.type}
+              imgConfiguration={currentProduct.imgs.imgConfiguration[0]}
+            />
             <ProductGeneralInformation
               onClick={onOpenProductCarousel.bind(links[links.length - 1].hash)}
               className={styles["product-general-information-box"]}
@@ -198,17 +194,12 @@ const Product = () => {
                 tab={links[0].hash}
                 isOpenModal={productModalState.isOpenModal}
               />
-              {/* </div> */}
-              <div className={styles["Product-configuration-img-box"]}>
-                {isPhoneDocument(currentProduct) ? (
-                  <img
-                    width={710}
-                    height={530}
-                    src={currentProduct.imgs.imgConfiguration[0]}
-                    alt={`${currentProduct.title} configuration`}
-                  />
-                ) : null}
-              </div>
+
+              <ProductConfigurationImgBox
+                title={currentProduct.title}
+                type={currentProduct.type}
+                imgConfiguration={currentProduct.imgs.imgConfiguration[0]}
+              />
 
               <ProductGeneralInformation
                 onClick={onOpenProductCarousel.bind(
@@ -266,8 +257,8 @@ const Product = () => {
                 title={currentProduct.title}
               />
               <ProductConfiguration
-                // the second last
-                tab={links[links.length - 2].hash}
+                // the last link
+                tab={links[links.length - 1].hash}
                 onToggleModal={onToggleModal}
                 configuration={currentProduct.configuration}
                 title={currentProduct.title}
@@ -288,6 +279,6 @@ export const loader = ({ params, request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const resourceReg = url.pathname?.match(/(\/.+\/)/i);
   const resource = resourceReg ? resourceReg[0].slice(1, -1) : "";
-
+ 
   return getProductReactRouter(resource as Resources, params.slug!);
 };

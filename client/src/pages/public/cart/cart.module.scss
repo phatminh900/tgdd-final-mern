@@ -13,14 +13,14 @@
   }
   &__header {
     justify-content: space-between;
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--spacing-md-2);
     @include respond(tab-land) {
-      padding: 0 1.2rem;
+      padding: 0 var(--spacing-md-2);
     }
   }
   &__body {
     border-radius: var(--round-border-sm);
-    box-shadow: 0.4rem 1rem 3.2rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0.4rem 1rem var(--spacing-huge) rgba(0, 0, 0, 0.4);
     background-color: var(--color-darker-white);
     padding: 1.6rem 3.6rem;
     @include respond(phone) {
@@ -32,7 +32,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2.4rem 0;
+    margin: var(--spacing-huge) 0;
     & > a {
       color: var(--color-tertiary);
     }

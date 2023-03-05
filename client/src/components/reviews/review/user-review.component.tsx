@@ -1,32 +1,37 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { IReviewDocument } from "pages/public/review/review.interface";
 import styles from "./user-review.module.scss";
-const UserReview = ({ review }: { review: IReviewDocument }) => {
+type UserReviewProps = {
+  user: IReviewDocument["user"];
+  rating: IReviewDocument["rating"];
+  id: string;
+  review: string;
+  photo?: string;
+};
+const UserReview = ({ id, review, user, photo, rating }: UserReviewProps) => {
+  const stars=React.useMemo(()=> Array.from({ length: 5 }).map((_, i) => (
+    <li key={crypto.randomUUID()}>
+      {i + 1 <= rating ? <AiFillStar /> : <AiOutlineStar />}
+    </li>
+  )),[])
   return (
-    <div key={review._id} className={`${styles["user-review"]} flex gap-6px`}>
-      <p className={styles["user-review__name"]}>
-        {review?.user?.name || "phat"}
-      </p>
+    <div key={id} className={`${styles["user-review"]} flex gap-6px`}>
+      <p className={styles["user-review__name"]}>{user?.name}</p>
       <figure className={styles["user-review__rating"]}>
         <ul className={`${styles["user-review__rating"]} flex-vt-ct`}>
-          {Array.from({ length: 5 }).map((_, i) => (
-            <li key={uuidv4()}>
-              {i + 1 <= review.rating ? <AiFillStar /> : <AiOutlineStar />}
-            </li>
-          ))}
-        </ul>
-        {review.photo && (
+          {stars}
+        </ul> 
+        {photo && (
           <img
             height={72}
             width={72}
             className={styles["user-review__img"]}
-            src={review.photo}
+            src={photo}
             alt="user review "
           />
         )}
-        <p className={styles["user-review__text"]}>{review.review}</p>
+        <p className={styles["user-review__text"]}>{review}</p>
       </figure>
     </div>
   );

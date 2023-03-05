@@ -24,8 +24,10 @@ const Login = () => {
     | ResponseStatusMessage;
   const { userValue, changeUserValue, error, successMsg } =
     useLoginHook(loginData);
+
   const navigation = useNavigation();
-  const text = navigation.state === "submitting" ? "Logging..." : "Login";
+  const text = navigation.state === "submitting" ? "Submitting..." : "Login";
+
   const { isLoading, isSuccess } = useChangeTextSubmit(
     navigation,
     loginData?.status

@@ -1,10 +1,9 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import styles from "./slider.module.scss";
-import Slides from "./slides/slides.component";
 import useSlider from "./slider.hook";
-import { Link } from "react-router-dom";
+import SlideBox from "./slide-box/slide-box";
+import Dot from "./dot/dot.component";
 
 interface SliderProps {
   maxSlideLength: number;
@@ -46,42 +45,37 @@ const Slider = ({
     currentSlideNumber,
     onSetCurrentSlideNumber,
   });
-  const SlidesEl = (i: number, slide: string | string[]) => (
-    <Slides
-      onToggleModal={onToggleModal}
-      currentSlide={currentSlide}
-      index={i}
-      key={uuidv4()}
-      slide={slide}
-    />
-  );
+
   return (
     <>
-      <div className={`${styles.slider} ${className}`}>
+      <div data-testid="slides" className={`${styles.slider} ${className}`}>
         {isLink &&
           links &&
           links.map((link, i) => (
-            <div
-              className={styles["slide-box"]}
-              style={{ translate: `${(i - currentSlide) * 100}%` }}
-              key={link.id}
-            >
-              <Link to={link.path}>{SlidesEl(i, link.slide)}</Link>
-            </div>
+            <SlideBox
+              key={link.path}
+              translatePercentage={i - currentSlide}
+              onToggleModal={onToggleModal}
+              currentSlide={currentSlide}
+              index={i}
+              slide={link.slide}
+              path={link.path}
+            />
           ))}
         {slides &&
           slides.map((slide, i) => (
-            <div
-              className={styles["slide-box"]}
-              style={{ translate: `${(i - currentSlide) * 100}%` }}
+            <SlideBox
               key={slide}
-            >
-              {SlidesEl(i, slide)}
-            </div>
+              translatePercentage={i - currentSlide}
+              onToggleModal={onToggleModal}
+              currentSlide={currentSlide}
+              index={i}
+              slide={slide}
+            />
           ))}
         <button
           role={"button"}
-          aria-labelledby="navigate"
+          aria-label="navigate-image-left"
           className={`${styles.btn} ${styles["btn--left"]} center-vt-absolute`}
           onClick={prevSlide}
         >
@@ -89,7 +83,7 @@ const Slider = ({
         </button>
         <button
           role={"button"}
-          aria-labelledby="navigate"
+          aria-label="navigate-image-right"
           className={`${styles.btn} ${styles["btn--right"]}    center-vt-absolute`}
           onClick={nextSlide}
         >
@@ -101,21 +95,13 @@ const Slider = ({
             className={`${styles.dots} flex gap-4px center-hr-left-absolute `}
           >
             {links &&
-              links.map((_, index) => (
-                <button
-                  onClick={(e) => {
-                    const index = +(e.target as HTMLElement).closest("button")!
-                      .dataset.index!;
-                    gotoSlide(index);
-                  }}
-                  key={uuidv4()}
-                  data-index={index}
-                  className={`${styles.dot} ${
-                    currentSlide === index ? styles.active : ""
-                  }`}
-                >
-                  &nbsp;
-                </button>
+              links.map((link, index) => (
+                <Dot
+                  currentSlide={currentSlide}
+                  index={index}
+                  path={link.path}
+                  gotoSlide={gotoSlide}
+                />
               ))}
           </div>
         )}
@@ -125,7 +111,7 @@ const Slider = ({
           {slides &&
             slides.map((slide, index) => (
               <li
-                key={uuidv4()}
+                key={slide}
                 className={`${styles.slide} ${
                   currentSlide === index ? styles.active : ""
                 }`}
@@ -143,7 +129,7 @@ const Slider = ({
                     width={800}
                     height={200}
                     src={slide}
-                    alt="Iphone hightlight"
+                    alt="img highlight"
                   />
                 </button>
               </li>

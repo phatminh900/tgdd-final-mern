@@ -8,7 +8,7 @@
   width: 22.8rem;
 }
 footer {
-  padding-top: 2.4rem;
+  padding-top: var(--spacing-huge);
   padding: 8rem 0;
   background-color: var(--color-darker-white);
   border-top: 1px solid var(--color-border);
@@ -22,7 +22,7 @@ footer {
   @include respond(tab-land) {
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
+    gap: var(--spacing-md-2);
   }
 }
 .copyright {

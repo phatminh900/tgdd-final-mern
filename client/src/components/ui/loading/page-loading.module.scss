@@ -1,3 +1,4 @@
+
 .loading {
   height: 100vh;
   background-color: rgba(255, 212, 0, 0.3);
@@ -14,7 +15,7 @@
     object-fit: contain;
   }
   h2 {
-    font-size: 6.4rem;
+    font-size: var(--large-font-size);
     color: var(--color-white);
     letter-spacing: 12px;
     text-transform: uppercase;
@@ -64,5 +65,10 @@
   }
   100% {
     width: 100%;
+  }
+}
+@media  (max-width:56.25em) {
+  h2{
+    font-size: var(--medium-font-size);
   }
 }

@@ -18,6 +18,7 @@ const InputPassword = ({
   const [isShowPassword, setIsShowPassword] = useState(false);
   let content = (
     <input
+      data-testid='input-password'
       onChange={onChange}
       defaultValue={value}
       className={`${styles.input} ${className}`}
@@ -44,6 +45,7 @@ const InputPassword = ({
     <>
       {content}
       <button
+      aria-label="show-password"
         tabIndex={-1}
         type="button"
         className={styles.showPassword}

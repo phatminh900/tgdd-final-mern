@@ -1,25 +1,17 @@
-import React from "react";
 import styles from "../review.module.scss";
 import { Link } from "react-router-dom";
-import { IProductReview, IReviewDocument } from "../review.interface";
+import { LinksHierarchy } from "components";
 interface ReviewHeaderProps {
-  reviews: IProductReview;
+  category:string,
+  title:string,
   slug: string;
 }
-const ReviewHeader = ({ reviews, slug }: ReviewHeaderProps) => {
+const ReviewHeader = ({ category,title, slug }: ReviewHeaderProps) => {
+  const linksHierarchy=[{to:category.toLowerCase(),label:category},{to:`${category.toLowerCase()}/${slug}`,label:title}]
   return (
     <div className={styles.reviews__header}>
-      <ul className={`${styles.links} flex-vt-ct`}>
-        <Link to={`/${reviews.category.toLowerCase()}`}>
-          {reviews.category}
-        </Link>
-        <Link to={`/${reviews.category.toLowerCase()}/${slug}`}>
-          {reviews.title}
-        </Link>
-        <Link style={{ color: "var(--color-grey)", cursor: "initial" }} to="#">
-          Tất cả đánh giá
-        </Link>
-      </ul>
+      <LinksHierarchy  links={linksHierarchy}/>
+     
     </div>
   );
 };

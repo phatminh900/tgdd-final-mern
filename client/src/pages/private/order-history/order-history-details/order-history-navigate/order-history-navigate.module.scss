@@ -1,6 +1,6 @@
 @import "../../../../../styles/_mixins/mixins";
 .order-history__navigation {
-  padding: 1.2rem 3.6rem 1.2rem 0.8rem;
+  padding: var(--spacing-md-2) 3.6rem var(--spacing-md-2) 0.8rem;
   border-radius: 0 100px 100px 0;
   @include respond(tab-land) {
     display: none;
@@ -14,11 +14,11 @@
   a {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: var(--spacing-md-2);
     color: var(--color-grey-text);
   }
   cursor: pointer;
   &:first-child {
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--spacing-md-2);
   }
 }

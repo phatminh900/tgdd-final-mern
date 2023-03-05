@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 
 import styles from "./product-configuration-carousel.module.scss";
 import { IPhoneDocument, IProductType } from "interfaces/allProductsType.interface";
@@ -59,7 +58,7 @@ const ProductConfigurationCarousel = ({
               <p>Quay phim</p>
               <ul className={styles["product-details__features"]}>
                 {phoneConfiguration.rearCam.film.map((f) => (
-                  <li key={uuidv4()}>{f}</li>
+                  <li key={f}>{f}</li>
                 ))}
               </ul>
             </li>
@@ -71,7 +70,7 @@ const ProductConfigurationCarousel = ({
               <p>Tính năng</p>
               <ul className={styles["product-details__features"]}>
                 {phoneConfiguration.rearCam.features.map((f) => (
-                  <li key={uuidv4()}>{f}</li>
+                  <li key={f}>{f}</li>
                 ))}
               </ul>
             </li>
@@ -86,7 +85,7 @@ const ProductConfigurationCarousel = ({
               <p>Tính năng</p>
               <ul className={styles["product-details__features"]}>
                 {phoneConfiguration.rearCam.features.map((f) => (
-                  <li key={uuidv4()}>{f}</li>
+                  <li key={f}>{f}</li>
                 ))}
               </ul>
             </li>

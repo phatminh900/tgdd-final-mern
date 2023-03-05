@@ -1,6 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-
+import { GiAlliedStar } from "react-icons/gi";
+import { FiBox } from "react-icons/fi";
 import Slider from "components/slider/slider.component";
 
 import styles from "./product-overview.module.scss";
@@ -9,7 +9,7 @@ import {
   IProductHighlightsImgState,
   IProductModalState,
 } from "../product.interface";
-import useProductOverview from "./useProductOverview.hook";
+import ProductOverviewCarouselList from "./overview-carousel-list/overview-carousel-list.component";
 
 interface ProductOverviewProps
   extends Omit<IProductModalState, "onToggleModal">,
@@ -33,8 +33,34 @@ const ProductOverview = ({
   slideImgs,
   currentHighlightsImgNumber,
 }: ProductOverviewProps) => {
-  const productCarouselListTab = useProductOverview(linksColor, imgColorsCover);
-  const { hash } = useLocation();
+  const productCarouselListTab = React.useMemo(
+    () => [
+      {
+        id: crypto.randomUUID(),
+        icon: <GiAlliedStar />,
+        title: "Điểm nổi bật",
+      },
+      // colors
+      ...linksColor.map((linkColor, i) => ({
+        id: crypto.randomUUID(),
+        icon: (
+          <img
+            width={40}
+            height={40}
+            src={imgColorsCover[i]}
+            alt="Product color "
+          />
+        ),
+        title: linkColor.title,
+      })),
+      {
+        id: crypto.randomUUID(),
+        icon: <FiBox />,
+        title: "Thông số kĩ thuật",
+      },
+    ],
+    [linksColor, imgColorsCover]
+  );
   return (
     <div className={styles["product-overview"]}>
       <Slider
@@ -53,28 +79,14 @@ const ProductOverview = ({
       <ul
         className={`${styles["product-overview__carousel-list"]} flex gap-12px`}
       >
-        {productCarouselListTab.map((el, i) => (
-          <li key={el.id}>
-            <button onClick={onOpenProductCarousel.bind(links[i].hash)}>
-              <p
-                className={`${styles["product-overview__tab-img"]} ${
-                  links[i].hash === hash.replace("#", "") ||
-                  (hash === "" && i === 0)
-                    ? styles.active
-                    : ""
-                } flex-both-ct `}
-              >
-                {el.icon}
-              </p>
-              <p className={styles["product-overview__tab-title"]}>
-                {el.title}
-              </p>
-            </button>
-          </li>
-        ))}
+        <ProductOverviewCarouselList
+          links={links}
+          productCarouselListTab={productCarouselListTab}
+          onOpenProductCarousel={onOpenProductCarousel}
+        />
       </ul>
     </div>
   );
 };
 
-export default React.memo(ProductOverview);
+export default ProductOverview;

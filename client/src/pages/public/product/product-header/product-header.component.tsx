@@ -1,9 +1,7 @@
-import React from "react";
 import styles from "../product.module.scss";
 import ProductLinks from "../product-links/product-links.component";
 import useWindowDimensions from "hooks/useWindowDimensions";
 
-import { ICurrentProduct } from "../product.interface";
 import { ReviewOverall } from "components";
 
 interface ProductHeaderProps {
@@ -21,9 +19,8 @@ const ProductHeader = ({
   title,
 }: ProductHeaderProps) => {
   const { width } = useWindowDimensions();
-
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <ProductLinks firm={firm} category={category} />
       {width >= 1200 && (
         <div className={`${styles.info}  flex-vt-ct`}>
@@ -40,8 +37,8 @@ const ProductHeader = ({
           </a>
         </div>
       )}
-    </div>
+    </header>
   );
 };
 
-export default React.memo(ProductHeader);
+export default (ProductHeader);

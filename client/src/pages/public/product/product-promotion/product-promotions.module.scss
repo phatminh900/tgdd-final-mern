@@ -3,7 +3,7 @@
   border: 1px solid var(--color-border);
   font-size: var(--medium-font-size);
   & > * {
-    padding: 1rem 1.2rem;
+    padding: 1rem var(--spacing-md-2);
   }
   &__header {
     border-bottom: 1px solid var(--color-border);
@@ -17,6 +17,6 @@
     border-radius: 50%;
     background-color: var(--color-tertiary);
     color: var(--color-white);
-    margin-right: 1.2rem;
+    margin-right: var(--spacing-md-2);
   }
 }

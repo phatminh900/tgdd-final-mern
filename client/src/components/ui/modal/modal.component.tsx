@@ -7,9 +7,10 @@ interface ModalProps {
   isOpen: boolean;
 }
 
-
-
-document.body.insertAdjacentHTML('afterbegin',`<div data-testid='modal' id='modal'></div>`)
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `<div data-testid='modal' id='modal'></div>`
+);
 const Modal = ({ children, className, isOpen }: ModalProps) => {
   const ModalEl = () => {
     return isOpen ? (

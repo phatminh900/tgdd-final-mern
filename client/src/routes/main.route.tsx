@@ -37,7 +37,7 @@ import {
   UserPersonalInformation,
   userPersonalInfoAction,
 } from "pages";
-import {  ErrorBoundary, PageLoading } from "components";
+import { ErrorBoundary, PageLoading } from "components";
 import AuthContextProvider from "context/auth.context";
 import loaderProducts from "utils/loaderProducts";
 
@@ -114,7 +114,6 @@ const router = createBrowserRouter(
   )
 );
 const Root = () => {
-
   return (
     <Provider store={setupStore()}>
       <ErrorBoundary>

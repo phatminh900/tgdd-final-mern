@@ -1,4 +1,4 @@
-$font-size-configuration: 1.2rem;
+$font-size-configuration: var(--spacing-md-2);
 $gap-el: 0.4rem;
 $gap-line: 8px;
 
@@ -41,7 +41,7 @@ $gap-line: 8px;
 .configuration-list {
   list-style: disc;
   cursor: text;
-  margin-left: 1.2rem;
+  margin-left: var(--spacing-md-2);
   font-size: $font-size-configuration;
 }
 .quantity {

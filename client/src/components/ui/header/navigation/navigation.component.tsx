@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
-import { v4 as uuidv4 } from "uuid";
 
 import styles from "./navigation.module.scss";
 import { ROUTES } from "app-constants/navigation.constant";
@@ -72,7 +71,7 @@ const Navigation = () => {
             />
           </div>
           {links.map((link, index) => (
-            <li key={uuidv4()} className={styles.link}>
+            <li key={link} className={styles.link}>
               <NavLink
                 onClick={toggleNavigationLink}
                 className={({ isActive }) =>
@@ -97,7 +96,7 @@ const Navigation = () => {
       <ul className={`${styles["small-links"]} gap-12px`}>
         {/* only get first 2 elements */}
         {links.slice(0, 2).map((link, index) => (
-          <li key={uuidv4()} className={styles.link}>
+          <li key={link} className={styles.link}>
             <NavLink
               className={styles.navlinks}
               style={(isActive) => {

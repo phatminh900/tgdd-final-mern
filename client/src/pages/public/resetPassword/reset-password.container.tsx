@@ -16,7 +16,7 @@ const ResetPassword = () => {
   const navigation = useNavigation();
   const { isLoading, isSuccess } = useChangeTextSubmit(
     navigation,
-    resetPasswordValue.status
+    resetPasswordValue?.status
   );
   const text =
     navigation.state === "submitting" ? "Submitting" : "Change your password";

@@ -1,6 +1,6 @@
 @import "../../../styles/_mixins/mixins";
 @import "../../../styles/_mixins/mixins";
-$gutter-component: 3.2rem;
+$gutter-component: var(--spacing-huge);
 $gutter-line: 1.4rem;
 
 .main {
@@ -12,7 +12,7 @@ $gutter-line: 1.4rem;
   border-top: 1px solid var(--color-border);
   @include respond(tab-land) {
     grid-template-columns: 1fr;
-    row-gap: 1.2rem;
+    row-gap: var(--spacing-md-2);
   }
 }
 .modal {
@@ -28,12 +28,10 @@ $gutter-line: 1.4rem;
     align-items: flex-start;
   }
 }
-.links {
-  @include links-hierarchy;
-}
+
 
 .title {
-  margin-right: 1.2rem;
+  margin-right: var(--spacing-md-2);
 }
 
 .reviews {
@@ -43,7 +41,7 @@ $gutter-line: 1.4rem;
     color: var(--color-tertiary);
     cursor: pointer;
     margin-left: 0.6rem;
-    font-size: 1.2rem;
+    font-size: var(--spacing-md-2);
   }
 }
 .left {
@@ -52,7 +50,7 @@ $gutter-line: 1.4rem;
     max-width: 100%;
   }
   & > * {
-    margin: 2.4rem 0;
+    margin: var(--spacing-huge) 0;
   }
 }
 
@@ -70,7 +68,7 @@ $gutter-line: 1.4rem;
 }
 .btn-storage,
 .btn-color {
-  padding: 1rem 2.4rem;
+  padding: 1rem var(--spacing-huge);
   border: 1px solid var(--color-border);
 }
 

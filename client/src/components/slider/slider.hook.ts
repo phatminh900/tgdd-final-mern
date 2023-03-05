@@ -32,7 +32,7 @@ const useSlider = (sliderState: {
 
     setCurrentSlide((prevSlide) => ++prevSlide);
   }, [sliderState, currentSlide]);
- 
+
   const prevSlide = useCallback(() => {
     if (
       sliderState.currentSlideNumber === 0 &&

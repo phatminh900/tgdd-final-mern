@@ -1,6 +1,6 @@
 .configurations {
   &__header {
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--spacing-md-2);
   }
   &__list {
     font-size: var(--medium-font-size);

@@ -5,7 +5,7 @@ $gutter-line: 1rem;
   background: var(--color-white);
   font-size: var(--medium-font-size);
   width: 30%;
-  padding: 1.2rem 1.2rem 2.4rem;
+  padding: var(--spacing-md-2) var(--spacing-md-2) var(--spacing-huge);
   border-radius: var(--round-border-sm);
   @include respond(tab-land) {
     width: 100%;
@@ -76,7 +76,7 @@ $gutter-line: 1rem;
   }
   &__quantity-box {
     border-bottom: 1px solid var(--color-border);
-    padding-bottom: 1.2rem;
+    padding-bottom: var(--spacing-md-2);
   }
   &__promotion {
     &.active {
@@ -104,7 +104,7 @@ $gutter-line: 1rem;
     position: absolute;
     top: 2%;
     right: 6%;
-    font-size: 3.2rem;
+    font-size: var(--spacing-huge);
     transition: all 0.4s;
     &:hover {
       color: var(--color-red);

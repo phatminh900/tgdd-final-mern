@@ -2,7 +2,6 @@ import React from "react";
 import { IReviewDocument } from "pages/public/review/review.interface";
 import { AiFillStar } from "react-icons/ai";
 
-import { v4 as uuidv4 } from "uuid";
 import styles from "./ratings.module.scss";
 const Rating = ({
   reviews,
@@ -13,12 +12,17 @@ const Rating = ({
   ratingQuantity: number;
   className?: string;
 }) => {
-  const ratings = Array.from({ length: 5 }, (_, i) => ({
-    id: uuidv4(),
-    number: 5 - i,
-    ratingsNumberQuantity: reviews?.filter((review) => review.rating === 5 - i)
-      .length,
-  }));
+  const ratings = React.useMemo(
+    () =>
+      Array.from({ length: 5 }, (_, i) => ({
+        id: crypto.randomUUID(),
+        number: 5 - i,
+        ratingsNumberQuantity: reviews?.filter(
+          (review) => review.rating === 5 - i
+        ).length,
+      })),
+    []
+  );
   return (
     <ul className={`${styles.ratings} ${className}`}>
       {ratings.map((rating) => {

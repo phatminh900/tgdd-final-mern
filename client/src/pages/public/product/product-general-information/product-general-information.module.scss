@@ -3,11 +3,18 @@
   overflow: hidden;
   height: 30rem;
   position: relative;
+  @include respond(tab-land){
+    height: auto;
+
+  }
   &__btn {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    @include respond(tab-land){
+      position: relative;
+    }
   }
 }
 .general-information {
@@ -15,8 +22,13 @@
   @include respond(tab-land) {
     height: auto;
   }
+  @include respond(phone){
+    img{
+      display: none;
+    }
+  }
   p {
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--spacing-md-2);
   }
   &::after {
     content: "";

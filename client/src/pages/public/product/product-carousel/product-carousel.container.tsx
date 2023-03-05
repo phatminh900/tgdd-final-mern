@@ -1,16 +1,12 @@
 import React from "react";
 import styles from "./product-carousel.module.scss";
-import { v4 as uuidv4 } from "uuid";
 
-import { useLocation, useNavigate } from "react-router-dom";
 import ProductInfoSlide from "./product-info-carousel/product-info-carousel.component";
 import { ILinks } from "../product.container";
-import ProductGeneralInformation from "../product-general-information/product-general-information";
 import { BtnClose } from "components";
 import ProductConfigurationCarousel from "./productconfiguration-carousel/product-configuration-carousel.component";
 import {
   IProductModalState,
-  ICurrentProduct,
   IProductHighlightsImgState,
 } from "../product.interface";
 import { IProductType } from "interfaces/allProductsType.interface";

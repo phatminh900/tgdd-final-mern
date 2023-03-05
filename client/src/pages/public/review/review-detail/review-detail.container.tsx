@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import styles from "../review.module.scss";
 import { IReviewDocument } from "../review.interface";
 import { useNavigate } from "react-router-dom";
@@ -66,23 +65,21 @@ const ReviewDetail = ({
       </div>
       <ul className={styles["reviews__reviews-list"]}>
         {currentReviews.map((review) => (
-          <UserReview key={review._id} review={review} />
+          <UserReview
+            key={review._id}
+            id={review._id}
+            rating={review.rating}
+            photo={review.photo}
+            review={review.review}
+            user={review.user}
+          />
         ))}
       </ul>
       <ul className={`${styles["reviews__pagination-list"]} flex-vt-ct`}>
         {paginationNumbers >= 2
           ? Array.from({ length: paginationNumbers }, (_, i) => {
-              //   if(i+1===5) return <li> <button
-              //   className={`${styles["reviews__pagination-btn"]} }`}
-              // >
-              //   5
-              // </button></li>
-
               return (
-                <li
-                  key={uuidv4()}
-                  className={styles["reviews__pagination-item"]}
-                >
+                <li key={i} className={styles["reviews__pagination-item"]}>
                   <button
                     onClick={changePage}
                     data-page={i + 1}

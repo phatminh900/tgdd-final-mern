@@ -1,5 +1,5 @@
 @import "../../../../styles/_mixins/mixins";
-$font-size-carousel-list: 1.2rem;
+$font-size-carousel-list: var(--spacing-md-2);
 .product-overview {
   &__slider {
     height: 40rem;
@@ -10,8 +10,8 @@ $font-size-carousel-list: 1.2rem;
   }
 
   &__carousel-list {
-    margin: 2.4rem 0;
-    padding: 1.2rem 0;
+    margin: var(--spacing-huge) 0;
+    padding: var(--spacing-md-2) 0;
     flex-wrap: wrap;
     justify-content: center;
     @include respond(phone) {

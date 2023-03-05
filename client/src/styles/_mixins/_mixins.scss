@@ -1,23 +1,15 @@
 @mixin links-hierarchy {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 1.2rem;
+  gap: var(--spacing-md-2);
+  margin-bottom: var(--spacing-md-2);
   & > a {
     color: var(--color-tertiary);
     display: flex;
     align-items: center;
     gap: 1rem;
-    &:not(:last-child)::after {
-      content: "";
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-bottom: 1px solid #333;
-      border-right: 1px solid #333;
-      transform: rotate(-45deg);
-    }
   }
+  
 }
 @mixin maxWidthCenter {
   width: 100%;

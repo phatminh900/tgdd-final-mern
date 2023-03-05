@@ -1,10 +1,6 @@
 import React from "react";
 import { Button } from "components";
 import styles from "../product.module.scss";
-import {
-  ILaptopDocument,
-  IPhoneDocument,
-} from "interfaces/allProductsType.interface";
 
 type ProductStorageProps = {
   storage:number[];
@@ -19,7 +15,7 @@ const ProductStorage = ({
   changeCurrentStorage,
 }: ProductStorageProps) => {
   return (
-    <div className={`${styles.storage} flex`}>
+    <div data-testid='product-storage' className={`${styles.storage} flex`}>
       {storage.map((st: number, i: number) => (
         <Button
         key={st}

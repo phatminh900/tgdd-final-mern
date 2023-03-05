@@ -1,18 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "../product.module.scss";
-import styles1 from "./product-links.module.scss";
+import { LinksHierarchy } from "components";
 type ProductLinksProps = {
   category: string;
   firm: string;
 };
 const ProductLinks = ({ category, firm }: ProductLinksProps) => {
-  return (
-    <ul className={`${styles.links} links-hierarchy ${styles1.links}`}>
-      <Link to={`/${category.toLowerCase()}`}>{category}</Link>
-      <Link to={`/${category.toLowerCase()}?firm=${firm}`}>{firm}</Link>
-    </ul>
-  );
+  const productLinks = [
+    { to: category.toLowerCase(), label: category },
+    { to: `${category.toLowerCase()}?firm=${firm}`, label: firm },
+  ];
+
+  return <LinksHierarchy links={productLinks} />;
 };
 
 export default ProductLinks;

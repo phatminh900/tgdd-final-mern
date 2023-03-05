@@ -84,6 +84,7 @@ const DynamicLaptopsHooks = React.lazy(() => import('./pages\public\laptops\lapt
 const DynamicIndex = React.lazy(() => import('./pages\public\login\index'));
 const DynamicLoginContainer = React.lazy(() => import('./pages\public\login\login.container'));
 const DynamicLoginHook = React.lazy(() => import('./pages\public\login\login.hook'));
+const DynamicLoginTest = React.lazy(() => import('./pages\public\login\test\login.test'));
 const DynamicIndex = React.lazy(() => import('./pages\public\NotFound\index'));
 const DynamicNotFoundComponent = React.lazy(() => import('./pages\public\NotFound\NotFound.component'));
 const DynamicIndex = React.lazy(() => import('./pages\public\phones\index'));
@@ -108,14 +109,17 @@ const DynamicProductCheckoutListColorComponent = React.lazy(() => import('./page
 const DynamicProductCheckoutComponent = React.lazy(() => import('./pages\public\product\product-checkout\product-checkout.component'));
 const DynamicProductCheckoutHook = React.lazy(() => import('./pages\public\product\product-checkout\product-checkout.hook'));
 const DynamicProductColorComponent = React.lazy(() => import('./pages\public\product\product-color\product-color.component'));
+const DynamicProductConfigurationImgBoxComponent = React.lazy(() => import('./pages\public\product\product-configuration-img-box\product-configuration-img-box.component'));
+const DynamicLaptopConfigurationComponent = React.lazy(() => import('./pages\public\product\product-configuration\laptop-configuration.component'));
+const DynamicPhoneConfigurationComponent = React.lazy(() => import('./pages\public\product\product-configuration\phone-configuration.component'));
 const DynamicProductConfigurationComponent = React.lazy(() => import('./pages\public\product\product-configuration\product-configuration.component'));
 const DynamicProductGeneralInformation = React.lazy(() => import('./pages\public\product\product-general-information\product-general-information'));
 const DynamicProductHeaderComponent = React.lazy(() => import('./pages\public\product\product-header\product-header.component'));
 const DynamicProductInfoComponent = React.lazy(() => import('./pages\public\product\product-info\product-info.component'));
 const DynamicProductLinksComponent = React.lazy(() => import('./pages\public\product\product-links\product-links.component'));
 const DynamicProductModalComponent = React.lazy(() => import('./pages\public\product\product-modal\product-modal.component'));
+const DynamicOverviewCarouselListComponent = React.lazy(() => import('./pages\public\product\product-overview\overview-carousel-list\overview-carousel-list.component'));
 const DynamicProductOverviewComponent = React.lazy(() => import('./pages\public\product\product-overview\product-overview.component'));
-const DynamicUseProductOverviewHook = React.lazy(() => import('./pages\public\product\product-overview\useProductOverview.hook'));
 const DynamicProductPriceComponent = React.lazy(() => import('./pages\public\product\product-price\product-price.component'));
 const DynamicProductPromotionsComponent = React.lazy(() => import('./pages\public\product\product-promotion\product-promotions.component'));
 const DynamicProductNoReviewComponent = React.lazy(() => import('./pages\public\product\product-review\product-no-review.component'));
@@ -147,6 +151,7 @@ const DynamicSharedLayout = React.lazy(() => import('./pages\public\shared-layou
 const DynamicIndex = React.lazy(() => import('./pages\public\signup\index'));
 const DynamicSignupContainer = React.lazy(() => import('./pages\public\signup\signup.container'));
 const DynamicSignupHook = React.lazy(() => import('./pages\public\signup\signup.hook'));
+const DynamicSignupTest = React.lazy(() => import('./pages\public\signup\test\signup.test'));
 
 
 export const routes = [
@@ -236,6 +241,7 @@ export const routes = [
       { path: 'D:\public\login', element: <DynamicIndex />, index: true},
       { path: 'D:\public\login\login.container', element: <DynamicLoginContainer />, },
       { path: 'D:\public\login\login.hook', element: <DynamicLoginHook />, },
+      { path: 'D:\public\login\test\login.test', element: <DynamicLoginTest />, },
       { path: 'D:\public\NotFound', element: <DynamicIndex />, index: true},
       { path: 'D:\public\NotFound\NotFound.component', element: <DynamicNotFoundComponent />, },
       { path: 'D:\public\phones', element: <DynamicIndex />, index: true},
@@ -260,14 +266,17 @@ export const routes = [
       { path: 'D:\public\product\product-checkout\product-checkout.component', element: <DynamicProductCheckoutComponent />, },
       { path: 'D:\public\product\product-checkout\product-checkout.hook', element: <DynamicProductCheckoutHook />, },
       { path: 'D:\public\product\product-color\product-color.component', element: <DynamicProductColorComponent />, },
+      { path: 'D:\public\product\product-configuration-img-box\product-configuration-img-box.component', element: <DynamicProductConfigurationImgBoxComponent />, },
+      { path: 'D:\public\product\product-configuration\laptop-configuration.component', element: <DynamicLaptopConfigurationComponent />, },
+      { path: 'D:\public\product\product-configuration\phone-configuration.component', element: <DynamicPhoneConfigurationComponent />, },
       { path: 'D:\public\product\product-configuration\product-configuration.component', element: <DynamicProductConfigurationComponent />, },
       { path: 'D:\public\product\product-general-information\product-general-information', element: <DynamicProductGeneralInformation />, },
       { path: 'D:\public\product\product-header\product-header.component', element: <DynamicProductHeaderComponent />, },
       { path: 'D:\public\product\product-info\product-info.component', element: <DynamicProductInfoComponent />, },
       { path: 'D:\public\product\product-links\product-links.component', element: <DynamicProductLinksComponent />, },
       { path: 'D:\public\product\product-modal\product-modal.component', element: <DynamicProductModalComponent />, },
+      { path: 'D:\public\product\product-overview\overview-carousel-list\overview-carousel-list.component', element: <DynamicOverviewCarouselListComponent />, },
       { path: 'D:\public\product\product-overview\product-overview.component', element: <DynamicProductOverviewComponent />, },
-      { path: 'D:\public\product\product-overview\useProductOverview.hook', element: <DynamicUseProductOverviewHook />, },
       { path: 'D:\public\product\product-price\product-price.component', element: <DynamicProductPriceComponent />, },
       { path: 'D:\public\product\product-promotion\product-promotions.component', element: <DynamicProductPromotionsComponent />, },
       { path: 'D:\public\product\product-review\product-no-review.component', element: <DynamicProductNoReviewComponent />, },
@@ -299,6 +308,7 @@ export const routes = [
       { path: 'D:\public\signup', element: <DynamicIndex />, index: true},
       { path: 'D:\public\signup\signup.container', element: <DynamicSignupContainer />, },
       { path: 'D:\public\signup\signup.hook', element: <DynamicSignupHook />, },
+      { path: 'D:\public\signup\test\signup.test', element: <DynamicSignupTest />, },
     ]
   }
 ]
@@ -386,6 +396,7 @@ export const pages = [
   { route: 'D:\public\login' },
   { route: 'D:\public\login\login.container' },
   { route: 'D:\public\login\login.hook' },
+  { route: 'D:\public\login\test\login.test' },
   { route: 'D:\public\NotFound' },
   { route: 'D:\public\NotFound\NotFound.component' },
   { route: 'D:\public\phones' },
@@ -410,14 +421,17 @@ export const pages = [
   { route: 'D:\public\product\product-checkout\product-checkout.component' },
   { route: 'D:\public\product\product-checkout\product-checkout.hook' },
   { route: 'D:\public\product\product-color\product-color.component' },
+  { route: 'D:\public\product\product-configuration-img-box\product-configuration-img-box.component' },
+  { route: 'D:\public\product\product-configuration\laptop-configuration.component' },
+  { route: 'D:\public\product\product-configuration\phone-configuration.component' },
   { route: 'D:\public\product\product-configuration\product-configuration.component' },
   { route: 'D:\public\product\product-general-information\product-general-information' },
   { route: 'D:\public\product\product-header\product-header.component' },
   { route: 'D:\public\product\product-info\product-info.component' },
   { route: 'D:\public\product\product-links\product-links.component' },
   { route: 'D:\public\product\product-modal\product-modal.component' },
+  { route: 'D:\public\product\product-overview\overview-carousel-list\overview-carousel-list.component' },
   { route: 'D:\public\product\product-overview\product-overview.component' },
-  { route: 'D:\public\product\product-overview\useProductOverview.hook' },
   { route: 'D:\public\product\product-price\product-price.component' },
   { route: 'D:\public\product\product-promotion\product-promotions.component' },
   { route: 'D:\public\product\product-review\product-no-review.component' },
@@ -449,4 +463,5 @@ export const pages = [
   { route: 'D:\public\signup' },
   { route: 'D:\public\signup\signup.container' },
   { route: 'D:\public\signup\signup.hook' },
+  { route: 'D:\public\signup\test\signup.test' },
 ]

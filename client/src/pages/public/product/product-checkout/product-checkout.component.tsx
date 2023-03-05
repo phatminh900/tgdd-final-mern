@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { AiFillCaretDown } from "react-icons/ai";
 import styles from "./product-checkout.module.scss";
 import formatCurrency from "utils/formatCurrency";
@@ -99,7 +98,7 @@ const ProductCheckout = ({
           >
             <ul className={styles["product-checkout__promotion-list"]}>
               {promotion.map((promo) => (
-                <li key={uuidv4()}>{promo}</li>
+                <li key={promo}>{promo}</li>
               ))}
             </ul>
             <button

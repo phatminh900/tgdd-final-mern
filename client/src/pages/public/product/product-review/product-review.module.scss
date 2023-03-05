@@ -1,18 +1,21 @@
 @import "../../../../styles/_mixins//mixins";
-$font-size-star-icon: 3.2rem;
-$padding-horizontally-modal: 3.2rem;
+$font-size-star-icon: var(--spacing-huge);
+$padding-horizontally-modal: var(--spacing-huge);
 .product-reviews {
-  padding: 1.6rem 2.4rem;
+  padding: 1.6rem var(--spacing-huge);
   margin-top: 5.6rem;
   border-radius: var(--round-border-sm);
   border: 1px solid var(--color-border);
 
   font-size: var(--medium-font-size);
+  @include respond(tab-land){
+    margin-top: var(--spacing-md-2);
+  }
   @include respond(phone) {
-    padding: 1.2rem 1.2rem;
+    padding: var(--spacing-md-2) var(--spacing-md-2);
   }
   h3 {
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--spacing-md-2);
   }
 
   &__ratingAvg {
@@ -25,7 +28,7 @@ $padding-horizontally-modal: 3.2rem;
   }
   &__ratings-list {
     cursor: pointer;
-    padding: 1.2rem 0;
+    padding: var(--spacing-md-2) 0;
   }
   &__ratings-item {
     gap: 0.6rem;
@@ -60,7 +63,7 @@ $padding-horizontally-modal: 3.2rem;
   }
   &__notification {
     font-weight: bold;
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--spacing-md-2);
   }
   &__actions {
     & > button {
@@ -94,7 +97,7 @@ $padding-horizontally-modal: 3.2rem;
   }
   &__body {
     & > form {
-      padding: 1rem 3.2rem 3.2rem;
+      padding: 1rem var(--spacing-huge) var(--spacing-huge);
     }
     & > * {
       padding: 1rem $padding-horizontally-modal;
@@ -143,20 +146,20 @@ $padding-horizontally-modal: 3.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2.4rem 0;
+    margin: var(--spacing-huge) 0;
     & > a {
       color: var(--color-tertiary);
     }
   }
   &__submit {
     width: 50%;
-    margin: 2.4rem auto;
+    margin: var(--spacing-huge) auto;
   }
   &__err-msg {
     color: var(--color-red);
     font-size: 1.6rem;
     text-align: center;
-    margin: 1.2rem 0;
+    margin: var(--spacing-md-2) 0;
   }
   &__btn-close {
     border: none;

@@ -1,12 +1,12 @@
 .form-row {
   flex-direction: column;
-  margin-bottom: 2.4rem;
+  margin-bottom: var(--spacing-huge);
   position: relative;
 }
 .input {
   display: block;
   outline: none;
-  padding: 1.2rem 0 1.2rem 1.2rem;
+  padding: var(--spacing-md-2) 0 var(--spacing-md-2) var(--spacing-md-2);
   border-radius: 5px;
   border: 1px solid #ccc;
 
@@ -21,7 +21,7 @@
 }
 .label {
   font-size: var(--medium-font-size);
-  transform: translate(1.2rem, 0);
+  transform: translate(var(--spacing-md-2), 0);
   transition: opacity 0.8s transform 1.2s;
   transition: all 1s;
   color: #777;
@@ -30,7 +30,7 @@
   opacity: 0;
 }
 .input:placeholder-shown ~ .label {
-  transform: translate(1.2rem, -3rem);
+  transform: translate(var(--spacing-md-2), -3rem);
   font-size: var(--medium-font-size);
   opacity: 0;
 }

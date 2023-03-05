@@ -51,7 +51,7 @@
 }
 
 .list-slides-img {
-  margin-top: 2.4rem;
+  margin-top: var(--spacing-huge);
   display: flex;
   justify-content: center;
   img {

@@ -9,7 +9,7 @@ describe("ProductCarouselList", () => {
       {
         id: "871b3925-60fc-4dd3-8773-2318fa28a651",
         title: "Điểm nổi bậc",
-        hash: "hightlight",
+        hash: "highlight",
       },
       {
         id: "b8acae32-5425-4008-a90d-03e76cc2249b",

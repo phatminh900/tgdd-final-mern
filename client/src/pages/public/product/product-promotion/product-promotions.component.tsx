@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./product-promotions.module.scss";
 import { type ProductProps } from "../product.hook";
 
-import { v4 as uuidv4 } from "uuid";
 
 const ProductPromotions = ({ promotion }: {promotion:string[]}) => {
   return (
@@ -13,7 +12,7 @@ const ProductPromotions = ({ promotion }: {promotion:string[]}) => {
       </div>
       {promotion &&
         promotion.map((pro, i) => (
-          <li className="flex-vt-ct" key={uuidv4()}>
+          <li className="flex-vt-ct" key={pro}>
             <span className={`${styles["promotions__order"]} flex-both-ct`}>
               {i + 1}
             </span>

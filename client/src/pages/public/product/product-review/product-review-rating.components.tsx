@@ -1,7 +1,9 @@
+import React from "react";
 import Cookies from "js-cookie";
-import { AiFillCamera } from "react-icons/ai";
-import ProductReviewStars from "./product-reviews-stars.component";
 import { Link } from "react-router-dom";
+import { AiFillCamera } from "react-icons/ai";
+import { BsCheckCircle } from "react-icons/bs";
+import ProductReviewStars from "./product-reviews-stars.component";
 import { BtnClose, Button } from "components";
 import styles from "./product-review.module.scss";
 import { JWTKEY } from "app-constants/browser.constatnt";
@@ -10,15 +12,12 @@ import { IProductReviewRating } from "./product-review.interface";
 import { useAppDispatch } from "store/hooks.store";
 import useProductReviewRating from "./product-review-rating.hook";
 import { IReviewDocument } from "service/review.service";
-import { BsCheckCircle } from "react-icons/bs";
-export interface ProductReviewRatingProps
-  extends 
-    IProductReviewRating {
-      id:string,
-      title:string,
-      type:string;
-      imgCover:string
-    }
+export interface ProductReviewRatingProps extends IProductReviewRating {
+  id: string;
+  title: string;
+  type: string;
+  imgCover: string;
+}
 
 const ProductReviewRating = ({
   title,
@@ -95,12 +94,7 @@ const ProductReviewRating = ({
           <div
             className={`${styles["product-reviews-modal__name"]} flex-vt-ct`}
           >
-            <img
-              height={65}
-              width={65}
-              src={imgCover!}
-              alt="Product"
-            />
+            <img height={65} width={65} src={imgCover!} alt="Product" />
             <p>{title}</p>
           </div>
           <ProductReviewStars
@@ -168,4 +162,4 @@ const ProductReviewRating = ({
   );
 };
 
-export default ProductReviewRating;
+export default React.memo(ProductReviewRating);

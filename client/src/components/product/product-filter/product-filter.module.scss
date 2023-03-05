@@ -1,7 +1,7 @@
 @import "../../../styles/_mixins/mixins";
 .product-filter {
   &__list {
-    margin: 3.2rem 0 1.6rem 0;
+    margin: var(--spacing-huge) 0 1.6rem 0;
 
     @include respond(tab-land) {
       position: relative;
@@ -111,7 +111,7 @@
     }
   }
   &__firms {
-    margin-bottom: 3.2rem;
+    margin-bottom: var(--spacing-huge);
     & .product-filter__firm-btn {
       border-radius: 100px;
       padding: 0.4rem 1.6rem;
